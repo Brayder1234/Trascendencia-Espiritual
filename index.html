@@ -271,6 +271,23 @@ h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12;letter-spacin
 .q .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
 .q .a p{padding:0 22px 20px;color:var(--ink-dim)}
 
+/* ---------- Purchase notification ---------- */
+.purchase-notif{
+  position:fixed;top:80px;right:20px;z-index:999;
+  background:rgba(14,7,8,.95);border:1px solid var(--line);
+  border-left:3px solid var(--gold);border-radius:12px;
+  padding:14px 16px;display:flex;align-items:center;gap:12px;
+  max-width:290px;box-shadow:0 8px 32px rgba(0,0,0,.5);
+  transform:translateX(340px);transition:transform .45s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;
+}
+.purchase-notif.show{transform:translateX(0)}
+.purchase-notif .pn-icon{font-size:26px;flex-shrink:0}
+.purchase-notif .pn-text{font-size:.82rem;line-height:1.4}
+.purchase-notif .pn-name{font-weight:700;color:#fff;display:block}
+.purchase-notif .pn-msg{color:var(--ink-dim)}
+.purchase-notif .pn-time{font-size:.72rem;color:var(--gold);margin-top:3px;display:block}
+
 /* ---------- Final CTA ---------- */
 .final-cta{text-align:center;padding:80px 0 90px;
   background:radial-gradient(800px 400px at 50% 0%,rgba(224,30,30,.10),transparent 70%)}
@@ -610,6 +627,16 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   <p style="margin-top:8px">Copyright © · Todos los derechos reservados.</p>
 </footer>
 
+<!-- PURCHASE NOTIFICATION -->
+<div class="purchase-notif" id="purchaseNotif">
+  <span class="pn-icon">🛒</span>
+  <div class="pn-text">
+    <span class="pn-name" id="pnName">Carlos M.</span>
+    <span class="pn-msg">acaba de realizar una compra ✅</span>
+    <span class="pn-time" id="pnTime">hace un momento</span>
+  </div>
+</div>
+
 <!-- STICKY BAR -->
 <div class="sticky" id="sticky">
   <div class="info"><s>Antes $51</s><b>$9,90</b></div>
@@ -633,6 +660,43 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     if(d<=0){localStorage.removeItem(KEY);}
   }
   tick(); setInterval(tick,1000);
+})();
+
+/* ---- Purchase notifications ---- */
+(function(){
+  var names = [
+    'Carlos M.','Laura P.','Diego A.','Sofía R.','Andrés V.',
+    'Valentina O.','Ricardo F.','María G.','Camila T.','Jorge S.',
+    'Natalia C.','Sebastián L.','Paula M.','Fernando R.','Daniela H.',
+    'Miguel A.','Isabella F.','Mateo B.','Lucía D.','Alejandro N.',
+    'Gabriela S.','Julián R.','Mariana V.','Eduardo P.','Catalina M.'
+  ];
+  var times = ['hace un momento','hace 1 min','hace 2 min','hace 3 min'];
+  var notif = document.getElementById('purchaseNotif');
+  var nameEl = document.getElementById('pnName');
+  var timeEl = document.getElementById('pnTime');
+  var used = [];
+
+  function randomName(){
+    if(used.length >= names.length) used = [];
+    var available = names.filter(function(n){ return used.indexOf(n) === -1; });
+    var pick = available[Math.floor(Math.random() * available.length)];
+    used.push(pick);
+    return pick;
+  }
+
+  function show(){
+    nameEl.textContent = randomName();
+    timeEl.textContent = times[Math.floor(Math.random() * times.length)];
+    notif.classList.add('show');
+    setTimeout(function(){ notif.classList.remove('show'); }, 4000);
+  }
+
+  // Primera aparición a los 5 segundos, luego cada 20s
+  setTimeout(function(){
+    show();
+    setInterval(show, 20000);
+  }, 5000);
 })();
 
 /* ---- Viewers counter ---- */
