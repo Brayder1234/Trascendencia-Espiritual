@@ -287,28 +287,27 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
 
 /* ---------- Affiliate float button ---------- */
 .affiliate-btn{
-  position:fixed;left:0;top:78%;transform:translateY(-50%);
-  z-index:998;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,#c8960a,#f5d060 50%,#c8960a);
-  color:#000;text-decoration:none;border-radius:0 14px 14px 0;
-  padding:16px 11px;gap:5px;
-  box-shadow:4px 0 24px rgba(200,150,10,.5),inset 0 1px 0 rgba(255,255,255,.4);
-  transition:transform .3s ease,box-shadow .3s ease;
-  writing-mode:vertical-rl;
-  border-right:none;border-top:1px solid rgba(255,220,80,.4);border-bottom:1px solid rgba(200,120,0,.4);
+  position:fixed;bottom:28px;left:20px;z-index:998;
+  display:flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#a07008,#f5d060,#a07008);
+  color:#000;text-decoration:none;
+  border-radius:50px;padding:13px 20px;
+  box-shadow:0 6px 28px rgba(200,150,10,.55),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .25s ease,box-shadow .25s ease;
+  font-family:'Open Sans',Arial,sans-serif;
+  border:1px solid rgba(255,220,80,.3);
+  writing-mode:horizontal-tb;
 }
-.affiliate-btn:hover{transform:translateY(-50%) translateX(4px);box-shadow:6px 0 32px rgba(200,150,10,.7)}
-.affiliate-icon{font-size:20px;writing-mode:horizontal-tb;margin-bottom:2px}
-.affiliate-main{font-family:'Open Sans',Arial,sans-serif;font-size:.82rem;font-weight:900;
-  letter-spacing:1px;text-transform:uppercase;writing-mode:vertical-rl;
-  text-orientation:mixed;color:#000;line-height:1}
-.affiliate-sub{font-family:'Open Sans',Arial,sans-serif;font-size:.62rem;font-weight:600;
-  letter-spacing:.5px;text-transform:uppercase;writing-mode:vertical-rl;
-  text-orientation:mixed;color:rgba(0,0,0,.65);margin-top:2px}
-@media(max-width:600px){
-  .affiliate-btn{padding:12px 9px}
+.affiliate-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 36px rgba(200,150,10,.7)}
+.affiliate-btn:active{transform:scale(.98)}
+.affiliate-icon{font-size:20px;flex-shrink:0}
+.affiliate-text{display:flex;flex-direction:column;line-height:1.2}
+.affiliate-main{font-size:.78rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:#000}
+.affiliate-sub{font-size:.65rem;font-weight:600;color:rgba(0,0,0,.6);letter-spacing:.2px}
+@media(max-width:480px){
+  .affiliate-btn{padding:11px 16px;bottom:20px;left:12px}
   .affiliate-main{font-size:.72rem}
-  .affiliate-sub{font-size:.56rem}
+  .affiliate-sub{font-size:.6rem}
 }
 
 /* ---------- Purchase notification ---------- */
@@ -793,8 +792,10 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 <!-- AFFILIATE FLOAT BUTTON -->
 <a href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener" class="affiliate-btn" title="Gana dinero recomendando este libro">
   <span class="affiliate-icon">💰</span>
-  <span class="affiliate-main">Gana dinero</span>
-  <span class="affiliate-sub">aquí →</span>
+  <span class="affiliate-text">
+    <span class="affiliate-main">Gana dinero aquí</span>
+    <span class="affiliate-sub">Recomienda y cobra comisión</span>
+  </span>
 </a>
 
 <div class="purchase-notif" id="purchaseNotif">
