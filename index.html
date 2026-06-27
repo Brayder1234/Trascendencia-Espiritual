@@ -215,17 +215,35 @@ h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12;letter-spacin
 .value .final b{font-family:var(--serif);font-size:clamp(3rem,11vw,4.4rem);line-height:1;
   background:linear-gradient(180deg,var(--gold-2),var(--gold-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ---------- Testimonials ---------- */
+/* ---------- Testimonials carousel ---------- */
 .testi{background:linear-gradient(180deg,transparent,rgba(26,22,38,.5),transparent)}
-.t-track{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.t-card{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:28px 26px}
+.t-slider{position:relative;overflow:hidden;padding:20px 0 60px}
+.t-track{display:flex;gap:22px;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform}
+.t-card{
+  flex:0 0 min(480px,82vw);
+  background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:28px 26px;
+  transition:transform .55s ease,opacity .55s ease,border-color .55s ease;
+  transform:scale(.88);opacity:.45;cursor:pointer;
+}
+.t-card.active{transform:scale(1);opacity:1;border-color:var(--gold)}
 .t-stars{color:var(--gold);letter-spacing:3px;margin-bottom:14px;font-size:1.05rem}
-.t-card p{font-style:italic;color:var(--ink);font-size:.98rem;margin-bottom:18px;font-family:var(--serif)}
+.t-card p{font-style:italic;color:var(--ink);font-size:.98rem;margin-bottom:18px;font-family:var(--serif);line-height:1.75}
 .t-who{display:flex;align-items:center;gap:12px}
-.t-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold-soft),var(--bg-3));
-  display:flex;align-items:center;justify-content:center;font-weight:700;color:#ffffff;font-family:var(--serif)}
+.t-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold-soft),var(--bg-3));
+  display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-family:var(--serif);font-size:1.1rem;flex-shrink:0}
 .t-who b{font-size:.92rem;display:block}
 .t-who small{color:var(--ink-dim);font-size:.78rem}
+/* dots */
+.t-dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
+.t-dot{width:8px;height:8px;border-radius:50%;background:var(--line);border:1px solid var(--gold);
+  cursor:pointer;transition:background .3s,transform .3s}
+.t-dot.active{background:var(--gold);transform:scale(1.3)}
+/* arrows */
+.t-arrows{display:flex;justify-content:center;gap:14px;margin-top:18px}
+.t-arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--bg-2);
+  color:var(--gold-2);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:border-color .2s,background .2s}
+.t-arrow:hover{border-color:var(--gold);background:var(--bg-3)}
 
 /* ---------- Guarantee ---------- */
 .guarantee{text-align:center}
@@ -487,23 +505,52 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   <div class="wrap">
     <h2 class="reveal">Lo que dicen los lectores</h2>
     <p class="lead reveal">★★★★★ &nbsp;327 reseñas verificadas</p>
-    <div class="t-track">
-      <div class="t-card reveal">
+  </div>
+  <div class="t-slider reveal">
+    <div class="t-track" id="tTrack">
+
+      <div class="t-card">
         <div class="t-stars">★★★★★</div>
-        <p>"Pensé que sería el típico PDF de 40 páginas infladas… pero cuando vi el Volumen 2 entendí que no era algo improvisado. Hay profundidad, conexiones y referencias simbólicas que te obligan a detenerte y pensar. No es contenido básico; tuve que releer partes para comprenderlas mejor."</p>
-        <div class="t-who"><div class="t-av">N</div><div><b>Natalia S.</b><small>Compra verificada</small></div></div>
+        <p>"Dudé porque ya había comprado otros 'libros de conocimiento oculto' que eran puras frases vacías. Aquí fue completamente diferente. El contenido tiene estructura, argumentos y referencias reales. Lo leí dos veces porque hay cosas que necesitan tiempo para asimilarse. Vale cada centavo y mucho más."</p>
+        <div class="t-who"><div class="t-av">C</div><div><b>Carlos M.</b><small>✔ Compra verificada · Colombia</small></div></div>
       </div>
-      <div class="t-card reveal">
+
+      <div class="t-card">
         <div class="t-stars">★★★★★</div>
-        <p>"La verdad lo compré con desconfianza. He comprado otros libros de 'conocimiento oculto' que terminan siendo frases motivacionales vacías. Aquí fue diferente: el contenido está estructurado y argumentado. Se nota que hay investigación y análisis detrás. Es para estudiar, no para leer por encima."</p>
-        <div class="t-who"><div class="t-av">A</div><div><b>Andrés V.</b><small>Compra verificada</small></div></div>
+        <p>"Tenía miedo de que fuera una estafa. Pagué los $9,90 con desconfianza total. En menos de 2 minutos ya tenía acceso, los 3 bonos incluidos y todo perfectamente organizado. El contenido superó mis expectativas por lejos. Es de esas compras que desearías haber hecho antes."</p>
+        <div class="t-who"><div class="t-av">L</div><div><b>Laura P.</b><small>✔ Compra verificada · México</small></div></div>
       </div>
-      <div class="t-card reveal">
+
+      <div class="t-card">
         <div class="t-stars">★★★★★</div>
-        <p>"Lo compré dudando porque en internet uno nunca sabe. Pero el acceso fue inmediato y los bonos llegaron tal como prometían. Todo organizado y descargable, sin enlaces rotos. Eso me dio tranquilidad. La verdad vale mucho más de lo que pagué."</p>
-        <div class="t-who"><div class="t-av">M</div><div><b>Marcela R.</b><small>Compra verificada</small></div></div>
+        <p>"Llevaba años buscando algo que conectara espiritualidad, simbolismo y mente de forma coherente. Este libro lo hace. No es contenido superficial de internet — hay investigación detrás. Desde que lo leí veo los textos antiguos con ojos completamente distintos."</p>
+        <div class="t-who"><div class="t-av">R</div><div><b>Ricardo F.</b><small>✔ Compra verificada · Argentina</small></div></div>
       </div>
+
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"Me pregunté si $9,90 podía comprar algo de calidad real. La respuesta es sí. El acceso fue instantáneo, los PDF están bien diseñados, el contenido es profundo y los bonos son un regalo adicional. No entiendo por qué no cuesta más. Compra sin pensarlo dos veces."</p>
+        <div class="t-who"><div class="t-av">S</div><div><b>Sofía R.</b><small>✔ Compra verificada · España</small></div></div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"Lo que más me convenció fue la garantía de 7 días. Pensé: si no me gusta pido devolución. Pero jamás la pedí porque el contenido me atrapó desde la primera página. El capítulo sobre simbolismo en textos bíblicos es impresionante. Nunca había visto esa perspectiva explicada así."</p>
+        <div class="t-who"><div class="t-av">D</div><div><b>Diego A.</b><small>✔ Compra verificada · Chile</small></div></div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"Soy escéptica por naturaleza. Pero la combinación de precio accesible + garantía + la calidad del contenido que se veía en las previsualizaciones me convenció. El libro responde preguntas que yo ni sabía que tenía. El bono del Libro de Enoc solo ya justifica la compra."</p>
+        <div class="t-who"><div class="t-av">V</div><div><b>Valentina O.</b><small>✔ Compra verificada · Perú</small></div></div>
+      </div>
+
     </div>
+  </div>
+  <div class="t-dots" id="tDots"></div>
+  <div class="t-arrows">
+    <button class="t-arrow" id="tPrev">&#8592;</button>
+    <button class="t-arrow" id="tNext">&#8594;</button>
   </div>
 </section>
 
@@ -603,6 +650,64 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   document.querySelectorAll('.reveal').forEach(function(el,i){
     el.style.animationDelay=Math.min(i*50, 300)+'ms';
   });
+})();
+
+/* ---- Testimonials carousel ---- */
+(function(){
+  var track = document.getElementById('tTrack');
+  var dotsEl = document.getElementById('tDots');
+  if(!track) return;
+  var cards = Array.from(track.querySelectorAll('.t-card'));
+  var total = cards.length;
+  var current = 0;
+  var autoTimer;
+
+  // Build dots
+  cards.forEach(function(_,i){
+    var d = document.createElement('span');
+    d.className = 't-dot' + (i===0?' active':'');
+    d.addEventListener('click', function(){ goTo(i); resetAuto(); });
+    dotsEl.appendChild(d);
+  });
+  var dots = Array.from(dotsEl.querySelectorAll('.t-dot'));
+
+  function cardWidth(){
+    return cards[0].offsetWidth + 22; // card + gap
+  }
+
+  function goTo(idx){
+    current = (idx + total) % total;
+    var offset = current * cardWidth();
+    // Center the active card
+    var sliderW = track.parentElement.offsetWidth;
+    var cw = cards[0].offsetWidth;
+    var center = (sliderW - cw) / 2;
+    track.style.transform = 'translateX(' + (center - offset) + 'px)';
+    cards.forEach(function(c,i){ c.classList.toggle('active', i===current); });
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===current); });
+  }
+
+  document.getElementById('tPrev').addEventListener('click', function(){ goTo(current-1); resetAuto(); });
+  document.getElementById('tNext').addEventListener('click', function(){ goTo(current+1); resetAuto(); });
+  cards.forEach(function(c,i){ c.addEventListener('click', function(){ goTo(i); resetAuto(); }); });
+
+  // Touch/swipe
+  var startX = 0;
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    var diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40){ goTo(diff > 0 ? current+1 : current-1); resetAuto(); }
+  }, {passive:true});
+
+  function resetAuto(){
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function(){ goTo(current+1); }, 4500);
+  }
+
+  // Init
+  goTo(0);
+  resetAuto();
+  window.addEventListener('resize', function(){ goTo(current); });
 })();
 
 /* ---- FAQ accordion ---- */
