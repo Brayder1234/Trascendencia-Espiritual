@@ -797,7 +797,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   var KEY='ckp_deadline';
   var end=parseInt(localStorage.getItem(KEY)||'0',10);
   var now=Date.now();
-  if(!end||end<now){ end=now+(2*3600+59*60+59)*1000; localStorage.setItem(KEY,end);}
+  if(!end||end<now){ end=now+(23*60)*1000; localStorage.setItem(KEY,end);}
   function pad(n){return n<10?'0'+n:''+n;}
   function tick(){
     var d=Math.max(0,end-Date.now());
