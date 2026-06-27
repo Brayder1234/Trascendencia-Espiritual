@@ -247,12 +247,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12;letter-spacin
 
 /* ---------- Guarantee ---------- */
 .guarantee{text-align:center}
-.seal{width:150px;height:150px;margin:0 auto 24px;border-radius:50%;
-  background:radial-gradient(circle,var(--bg-3),var(--bg));border:2px solid var(--gold);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:0 0 40px rgba(224,30,30,.25),inset 0 0 30px rgba(224,30,30,.12)}
-.seal b{font-family:var(--serif);font-size:2.6rem;color:var(--gold-2);line-height:.9}
-.seal small{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim)}
+.seal-wrap{margin:0 auto 28px;width:180px;height:180px;position:relative;animation:sealFloat 4s ease-in-out infinite}
+@keyframes sealFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
 .guarantee p{max-width:600px;margin:0 auto;color:var(--ink-dim)}
 
 /* ---------- FAQ ---------- */
@@ -576,7 +572,84 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 <!-- GUARANTEE -->
 <section class="s guarantee">
   <div class="wrap">
-    <div class="seal reveal"><b>7</b><small>Días de garantía</small></div>
+    <div class="seal-wrap">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" width="180" height="180">
+        <defs>
+          <radialGradient id="bgGrad" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#2a0a0a"/>
+            <stop offset="100%" stop-color="#0a0000"/>
+          </radialGradient>
+          <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e01e1e" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#e01e1e" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <path id="topArc"   d="M 30,90 A 60,60 0 0,1 150,90"/>
+          <path id="botArc"   d="M 28,96 A 62,62 0 0,0 152,96"/>
+        </defs>
+
+        <!-- Glow background -->
+        <circle cx="90" cy="90" r="88" fill="url(#glowGrad)"/>
+
+        <!-- Outer ring -->
+        <circle cx="90" cy="90" r="86" fill="none" stroke="#e01e1e" stroke-width="1.2" opacity="0.35"/>
+
+        <!-- Main badge circle -->
+        <circle cx="90" cy="90" r="80" fill="url(#bgGrad)"/>
+
+        <!-- Inner decorative ring -->
+        <circle cx="90" cy="90" r="73" fill="none" stroke="#e01e1e" stroke-width="1" opacity="0.6"/>
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#e01e1e" stroke-width="0.4" opacity="0.3"/>
+
+        <!-- Star points decorativos -->
+        <g fill="#e01e1e" opacity="0.7" filter="url(#glow)">
+          <polygon points="90,8 92.5,15 90,13 87.5,15" />
+          <polygon points="90,172 92.5,165 90,167 87.5,165" />
+          <polygon points="8,90 15,87.5 13,90 15,92.5" />
+          <polygon points="172,90 165,87.5 167,90 165,92.5" />
+        </g>
+
+        <!-- Diamond ornaments -->
+        <g fill="#e01e1e" opacity="0.5">
+          <rect x="88.5" y="4" width="3" height="3" transform="rotate(45 90 5.5)"/>
+          <rect x="88.5" y="172" width="3" height="3" transform="rotate(45 90 173.5)"/>
+          <rect x="4" y="88.5" width="3" height="3" transform="rotate(45 5.5 90)"/>
+          <rect x="172" y="88.5" width="3" height="3" transform="rotate(45 173.5 90)"/>
+        </g>
+
+        <!-- Shield icon -->
+        <path d="M90 38 L112 48 L112 70 Q112 84 90 92 Q68 84 68 70 L68 48 Z"
+              fill="none" stroke="#e01e1e" stroke-width="1.8" opacity="0.9"/>
+        <path d="M90 43 L107 51.5 L107 69 Q107 80 90 87 Q73 80 73 69 L73 51.5 Z"
+              fill="#e01e1e" opacity="0.12"/>
+        <!-- Checkmark inside shield -->
+        <polyline points="82,67 88,74 100,60" fill="none" stroke="#ff4d4d" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+        <!-- Big 7 -->
+        <text x="90" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="30"
+              font-weight="700" fill="#ff4d4d" filter="url(#glow)">7</text>
+
+        <!-- DÍAS text -->
+        <text x="90" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="8"
+              font-weight="700" fill="#ffffff" letter-spacing="4" opacity="0.9">DÍAS</text>
+
+        <!-- Top arc text -->
+        <text font-family="Arial,sans-serif" font-size="9.5" font-weight="700"
+              fill="#e01e1e" letter-spacing="2.5">
+          <textPath href="#topArc" startOffset="50%" text-anchor="middle">GARANTÍA TOTAL</textPath>
+        </text>
+
+        <!-- Bottom arc text -->
+        <text font-family="Arial,sans-serif" font-size="9" font-weight="600"
+              fill="#b9b1b2" letter-spacing="2">
+          <textPath href="#botArc" startOffset="50%" text-anchor="middle">DEVOLUCIÓN 100%</textPath>
+        </text>
+      </svg>
+    </div>
     <h2 class="reveal">Garantía sin preguntas de 7 días</h2>
     <div style="height:14px"></div>
     <p class="reveal">Si dentro de los primeros 7 días sientes que el contenido no es para ti, escríbenos y te devolvemos el 100% de tu dinero. Sin preguntas, sin complicaciones. El riesgo es completamente nuestro.</p>
