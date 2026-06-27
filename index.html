@@ -93,14 +93,20 @@ h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12;letter-spacin
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.6vw,1.5rem);
   color:var(--ink-dim);max-width:640px;margin:0 auto 34px}
-.book-stage{position:relative;display:inline-block;margin:8px auto 30px}
-.book{width:min(300px,72vw);border-radius:10px;box-shadow:var(--shadow);
-  border:1px solid var(--line);animation:float 5s ease-in-out infinite}
-.hero-pack{width:min(560px,90vw);border:none;border-radius:0;box-shadow:none;
-  filter:drop-shadow(0 24px 50px rgba(0,0,0,.6))}
-.book-glow{position:absolute;inset:-30px;z-index:-1;border-radius:50%;
-  background:radial-gradient(circle,rgba(224,30,30,.35),transparent 65%);filter:blur(20px)}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.book-stage{position:relative;display:block;margin:8px auto 30px;
+  width:min(560px,92vw);height:280px;perspective:900px}
+.book-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:300px;height:300px;z-index:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,30,30,.35),transparent 65%);filter:blur(24px);pointer-events:none}
+/* 3D Coverflow */
+.cf-stage{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+.cf-card{position:absolute;top:50%;left:50%;
+  width:160px;height:220px;border-radius:14px;overflow:hidden;cursor:pointer;
+  box-shadow:0 20px 60px rgba(0,0,0,.7);border:2px solid rgba(255,255,255,.08);
+  transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .6s ease,box-shadow .6s ease;
+  transform-origin:center center}
+.cf-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
 .price-row{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:8px}
 .before{font-size:1.15rem;color:var(--ink-dim);text-decoration:line-through;text-decoration-color:var(--red)}
@@ -354,9 +360,14 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   <h1 class="reveal">Desbloquea el conocimiento que <span>siempre te ocultaron</span></h1>
   <p class="sub reveal">Si sientes que hay algo que no encaja en la realidad… esto te lo explica.</p>
 
-  <div class="book-stage reveal">
+  <div class="book-stage reveal" id="cfStage">
     <div class="book-glow"></div>
-    <img class="book hero-pack" src="https://static-media.hotmart.com/nxNr8rHmiZy2JxsnC3Ma43Q0T0g=/filters:quality(1):format(webp)/klickart-prod/uploads/media/file/10638657/imagen.2png.png" alt="El Conocimiento Prohibido + 3 bonos de regalo">
+    <div class="cf-stage" id="cfTrack">
+      <div class="cf-card"><img src="https://static-media.hotmart.com/nxNr8rHmiZy2JxsnC3Ma43Q0T0g=/filters:quality(1):format(webp)/klickart-prod/uploads/media/file/10638657/imagen.2png.png" alt="El Conocimiento Prohibido"></div>
+      <div class="cf-card"><img src="assets/guiarealidad.png" alt="Guía Creación de la Realidad"></div>
+      <div class="cf-card"><img src="assets/domemociones.png" alt="Dominio de las Emociones"></div>
+      <div class="cf-card"><img src="assets/ldenoc.png" alt="El Libro de Enoc"></div>
+    </div>
   </div>
 
   <div class="price-row reveal">
@@ -792,6 +803,52 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 </div>
 
 <script>
+/* ---- 3D Coverflow Hero ---- */
+(function(){
+  var track = document.getElementById('cfTrack');
+  if(!track) return;
+  var cards = Array.from(track.querySelectorAll('.cf-card'));
+  var total = cards.length;
+  var current = 0;
+  var W = 160, GAP = 60;
+
+  function render(){
+    cards.forEach(function(card, i){
+      var diff = i - current;
+      var x = diff * (W + GAP);
+      var rotY = diff === 0 ? 0 : diff > 0 ? -45 : 45;
+      var scale = diff === 0 ? 1.15 : 0.78;
+      var z = diff === 0 ? 80 : 0;
+      var opacity = Math.abs(diff) > 1 ? 0 : diff === 0 ? 1 : 0.55;
+      var translateY = diff === 0 ? -8 : 0;
+      card.style.transform = 'translate(-50%,-50%) translateX('+x+'px) translateY('+translateY+'px) translateZ('+z+'px) rotateY('+rotY+'deg) scale('+scale+')';
+      card.style.opacity = opacity;
+      card.style.zIndex = diff === 0 ? 10 : Math.abs(diff) === 1 ? 5 : 1;
+      card.style.boxShadow = diff === 0
+        ? '0 30px 80px rgba(224,30,30,.45), 0 0 40px rgba(224,30,30,.2)'
+        : '0 10px 30px rgba(0,0,0,.5)';
+    });
+  }
+
+  cards.forEach(function(card, i){
+    card.addEventListener('click', function(){ current = i; render(); });
+  });
+
+  render();
+  setInterval(function(){
+    current = (current + 1) % total;
+    render();
+  }, 3000);
+
+  /* Touch/swipe */
+  var startX = 0;
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 40){ current = (current + (dx < 0 ? 1 : -1) + total) % total; render(); }
+  }, {passive:true});
+})();
+
 /* ---- Countdown (resets each visit, ~2h59m) ---- */
 (function(){
   var KEY='ckp_deadline';
