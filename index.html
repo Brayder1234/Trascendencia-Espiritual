@@ -267,6 +267,26 @@ h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12;letter-spacin
 .q .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
 .q .a p{padding:0 22px 20px;color:var(--ink-dim)}
 
+/* ---------- Affiliate float button ---------- */
+.affiliate-btn{
+  position:fixed;left:0;top:50%;transform:translateY(-50%);
+  z-index:998;display:flex;flex-direction:column;align-items:center;
+  background:linear-gradient(135deg,#c8960a,#f5d060,#a07008);
+  color:#000;text-decoration:none;border-radius:0 12px 12px 0;
+  padding:14px 10px;gap:6px;box-shadow:4px 0 20px rgba(200,150,10,.4);
+  transition:padding .3s ease,box-shadow .3s ease;
+  writing-mode:vertical-rl;
+}
+.affiliate-btn:hover{padding:14px 14px;box-shadow:4px 0 28px rgba(200,150,10,.65)}
+.affiliate-icon{font-size:18px;writing-mode:horizontal-tb}
+.affiliate-label{font-family:Arial Black,Arial,sans-serif;font-size:.68rem;font-weight:900;
+  letter-spacing:1.5px;text-transform:uppercase;writing-mode:vertical-rl;
+  text-orientation:mixed;color:#000}
+@media(max-width:600px){
+  .affiliate-btn{padding:10px 8px}
+  .affiliate-label{font-size:.6rem}
+}
+
 /* ---------- Purchase notification ---------- */
 .purchase-notif{
   position:fixed;top:80px;right:20px;z-index:999;
@@ -746,6 +766,12 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 </footer>
 
 <!-- PURCHASE NOTIFICATION -->
+<!-- AFFILIATE FLOAT BUTTON -->
+<a href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener" class="affiliate-btn" title="Quiero ser afiliado">
+  <span class="affiliate-icon">🤝</span>
+  <span class="affiliate-label">Ser Afiliado</span>
+</a>
+
 <div class="purchase-notif" id="purchaseNotif">
   <span class="pn-icon">🛒</span>
   <div class="pn-text">
