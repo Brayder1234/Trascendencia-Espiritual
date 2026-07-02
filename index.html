@@ -310,6 +310,65 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
   .affiliate-sub{font-size:.6rem}
 }
 
+/* ---------- Scarcity bar ---------- */
+.scarcity{
+  max-width:380px;margin:22px auto 0;text-align:center;
+}
+.scarcity .sc-label{font-size:.82rem;font-weight:900;color:var(--gold-2);letter-spacing:.03em;margin-bottom:8px}
+.scarcity .sc-label b{color:#ff6b6b}
+.scarcity .sc-track{
+  height:10px;border-radius:6px;background:#241215;overflow:hidden;
+  border:1px solid rgba(224,30,30,.35);
+}
+.scarcity .sc-fill{
+  height:100%;border-radius:6px;width:70%;
+  background:linear-gradient(90deg,#7a0e0e,var(--gold),#ff6b6b);
+  transition:width 1s ease;
+  animation:scPulse 1.8s ease-in-out infinite;
+}
+@keyframes scPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
+
+/* ---------- Pay trust ---------- */
+.paytrust{
+  display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-top:14px;font-size:.78rem;color:var(--ink-dim);
+}
+.paytrust .pt{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:5px 12px;font-weight:900;letter-spacing:.04em;color:var(--ink);
+  font-size:.75rem;
+}
+
+/* ---------- Para ti ---------- */
+.foryou{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:22px;
+  padding:38px 32px;max-width:640px;margin:0 auto;
+}
+.foryou ul{list-style:none}
+.foryou li{
+  display:flex;gap:13px;align-items:flex-start;
+  padding:13px 0;border-bottom:1px solid rgba(224,30,30,.12);font-size:1rem;
+}
+.foryou li:last-child{border-bottom:none}
+.foryou .fy-check{color:var(--gold);font-weight:900;font-size:1.1rem;flex-shrink:0}
+.foryou li b{color:var(--gold-2)}
+
+/* ---------- 3 pasos acceso ---------- */
+.access-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:760px;margin:0 auto}
+.astep{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:18px;
+  padding:26px 20px;text-align:center;
+}
+.astep .a-ico{font-size:1.9rem;margin-bottom:10px}
+.astep h3{font-size:.98rem;margin-bottom:6px}
+.astep p{color:var(--ink-dim);font-size:.85rem;line-height:1.5}
+.astep .a-num{
+  display:inline-block;background:rgba(224,30,30,.15);border:1px solid var(--line);
+  color:var(--gold-2);font-weight:900;font-size:.72rem;letter-spacing:.1em;
+  border-radius:50px;padding:3px 12px;margin-bottom:12px;
+}
+@media(max-width:640px){.access-steps{grid-template-columns:1fr}}
+
 /* ---------- Exit intent modal ---------- */
 .exit-overlay{
   position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);
@@ -432,6 +491,14 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     <div class="hero-urgency" style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(224,30,30,.1);border:1px solid rgba(224,30,30,.35);border-radius:50px;padding:8px 20px;font-size:.82rem;font-weight:900;color:var(--gold-2)">
       ⏳ La oferta de $9,90 termina en <span id="cdHero" style="color:#ff6b6b;font-variant-numeric:tabular-nums">--:--:--</span>
     </div>
+    <div class="scarcity">
+      <div class="sc-label">🔥 Quedan <b><span class="slotsNum">--</span> de 50</b> accesos al precio de hoy</div>
+      <div class="sc-track"><div class="sc-fill slotsFill"></div></div>
+    </div>
+    <div class="paytrust">
+      <span class="pt">VISA</span><span class="pt">Mastercard</span><span class="pt">AMEX</span><span class="pt">PayPal</span>
+      <span>· Compra protegida por Hotmart</span>
+    </div>
   </div>
 </section>
 
@@ -526,6 +593,28 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 <div class="divider"></div>
 
 <!-- BONUSES -->
+<!-- PARA TI -->
+<section class="s">
+  <div class="wrap">
+    <h2 class="reveal">Este libro es <span class="gold">para ti</span> si…</h2>
+    <div style="height:30px"></div>
+    <div class="foryou reveal">
+      <ul>
+        <li><span class="fy-check">✓</span><span>Sientes que los textos antiguos <b>esconden algo más</b> de lo que te enseñaron</span></li>
+        <li><span class="fy-check">✓</span><span>Has leído sobre espiritualidad pero todo se queda en <b>frases bonitas sin profundidad</b></span></li>
+        <li><span class="fy-check">✓</span><span>Quieres entender el <b>simbolismo real</b> detrás de la Biblia, los chakras y las tradiciones</span></li>
+        <li><span class="fy-check">✓</span><span>Buscas conocimiento <b>estructurado y con referencias</b>, no contenido reciclado de internet</span></li>
+        <li><span class="fy-check">✓</span><span>Estás listo para <b>cuestionar lo que siempre diste por hecho</b></span></li>
+      </ul>
+    </div>
+    <div style="text-align:center;margin-top:30px" class="reveal">
+      <a class="cta" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">Esto es para mí →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section class="s bonuses">
   <div class="wrap">
     <span class="eyebrow reveal" style="display:block;text-align:center;margin-bottom:14px">Solo por hoy</span>
@@ -774,6 +863,36 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 
 <div class="divider"></div>
 
+<!-- ACCESO EN 3 PASOS -->
+<section class="s">
+  <div class="wrap">
+    <h2 class="reveal">Tu acceso en <span class="gold">menos de 2 minutos</span></h2>
+    <div style="height:32px"></div>
+    <div class="access-steps">
+      <div class="astep reveal">
+        <div class="a-num">PASO 1</div>
+        <div class="a-ico">🛒</div>
+        <h3>Haz clic en el botón</h3>
+        <p>Te lleva al checkout seguro de Hotmart. Pagas con tarjeta o PayPal.</p>
+      </div>
+      <div class="astep reveal">
+        <div class="a-num">PASO 2</div>
+        <div class="a-ico">📧</div>
+        <h3>Revisa tu correo</h3>
+        <p>Recibes el acceso automático al instante, sin esperas ni trámites.</p>
+      </div>
+      <div class="astep reveal">
+        <div class="a-num">PASO 3</div>
+        <div class="a-ico">🔓</div>
+        <h3>Desbloquea todo</h3>
+        <p>Libro principal + 3 bonos, listos para leer desde cualquier dispositivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="wrap">
@@ -793,9 +912,16 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
       <div class="cd-box"><b id="cd-m2">00</b><small>Minutos</small></div>
       <div class="cd-box"><b id="cd-s2">00</b><small>Segundos</small></div>
     </div>
-    <div style="margin-top:30px" class="reveal">
-      <a class="cta" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">Comprar con descuento ahora →</a>
+    <div class="scarcity reveal">
+      <div class="sc-label">🔥 Quedan <b><span class="slotsNum">--</span> de 50</b> accesos al precio de hoy</div>
+      <div class="sc-track"><div class="sc-fill slotsFill"></div></div>
+    </div>
+    <div style="margin-top:26px" class="reveal">
+      <a class="cta" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">Quiero mi acceso antes de que suba →</a>
       <div class="guarantee-mini">🔒 Pago seguro vía Hotmart · Garantía de 7 días</div>
+      <div class="paytrust">
+        <span class="pt">VISA</span><span class="pt">Mastercard</span><span class="pt">AMEX</span><span class="pt">PayPal</span>
+      </div>
     </div>
   </div>
 </section>
@@ -881,6 +1007,25 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     if(d<=0){localStorage.removeItem(KEY);}
   }
   tick(); setInterval(tick,1000);
+})();
+
+/* ---- Scarcity slots ---- */
+(function(){
+  var KEY='ckp_slots';
+  var left=parseInt(localStorage.getItem(KEY)||'0',10);
+  if(!left || left<6 || left>16){ left=13 + Math.floor(Math.random()*3); localStorage.setItem(KEY,left); }
+  function paint(){
+    document.querySelectorAll('.slotsNum').forEach(function(e){ e.textContent=left; });
+    var pct=((50-left)/50*100)+'%';
+    document.querySelectorAll('.slotsFill').forEach(function(e){ e.style.width=pct; });
+  }
+  paint();
+  (function drop(){
+    setTimeout(function(){
+      if(left>6){ left--; localStorage.setItem(KEY,left); paint(); }
+      drop();
+    }, 50000 + Math.random()*70000);
+  })();
 })();
 
 /* ---- Exit intent ---- */
