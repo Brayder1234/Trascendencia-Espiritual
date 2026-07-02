@@ -1009,7 +1009,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   tick(); setInterval(tick,1000);
 })();
 
-/* ---- Scarcity slots ---- */
+/* ---- Scarcity slots (sincronizado con notificaciones de compra) ---- */
 (function(){
   var KEY='ckp_slots';
   var left=parseInt(localStorage.getItem(KEY)||'0',10);
@@ -1020,12 +1020,10 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     document.querySelectorAll('.slotsFill').forEach(function(e){ e.style.width=pct; });
   }
   paint();
-  (function drop(){
-    setTimeout(function(){
-      if(left>6){ left--; localStorage.setItem(KEY,left); paint(); }
-      drop();
-    }, 50000 + Math.random()*70000);
-  })();
+  /* Cada compra notificada consume un cupo (piso: 6) */
+  window.ckpTakeSlot = function(){
+    if(left>6){ left--; localStorage.setItem(KEY,left); paint(); }
+  };
 })();
 
 /* ---- Exit intent ---- */
@@ -1083,14 +1081,17 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     nameEl.textContent = randomName();
     timeEl.textContent = times[Math.floor(Math.random() * times.length)];
     notif.classList.add('show');
+    if(window.ckpTakeSlot) window.ckpTakeSlot(); /* cada compra resta un cupo */
     setTimeout(function(){ notif.classList.remove('show'); }, 4000);
   }
 
-  // Primera aparición a los 5 segundos, luego cada 20s
-  setTimeout(function(){
-    show();
-    setInterval(show, 20000);
-  }, 5000);
+  // Primera aparición a los 5 segundos, luego a ritmo variable (25-55s)
+  (function loop(delay){
+    setTimeout(function(){
+      show();
+      loop(25000 + Math.random() * 30000);
+    }, delay);
+  })(5000);
 })();
 
 /* ---- Viewers counter ---- */
