@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gana Dinero Recomendando | Programa de Afiliados</title>
-<meta name="description" content="Únete al programa de afiliados y gana comisiones por cada venta que generes. Registro gratis en Hotmart.">
+<title>Gana Dinero con Espiritualidad | Programa de Afiliados</title>
+<meta name="description" content="Gana 50% de comisión recomendando nuestros libros. Te damos los videos listos, tú los editas y los subes. Pago inmediato vía Hotmart.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -21,6 +21,7 @@
   --ink-dim:#b9b1b2;
   --line:rgba(224,30,30,.28);
   --green:#1f8a4c;
+  --wa:#25D366;
   --shadow:0 18px 60px rgba(0,0,0,.65);
   --font:'Lato',system-ui,-apple-system,sans-serif;
   --serif:'Lora',Georgia,serif;
@@ -55,7 +56,7 @@ a{color:inherit;text-decoration:none}
   margin-bottom:20px;
 }
 .hero h1 em{color:var(--gold);font-style:normal}
-.hero p{color:var(--ink-dim);font-size:1.1rem;max-width:560px;margin:0 auto 36px}
+.hero p{color:var(--ink-dim);font-size:1.1rem;max-width:620px;margin:0 auto 36px}
 
 /* CTA */
 .cta{
@@ -72,8 +73,8 @@ a{color:inherit;text-decoration:none}
 
 /* STEPS */
 .section-title{font-family:var(--serif);font-size:clamp(1.6rem,4.5vw,2.3rem);text-align:center;margin-bottom:12px}
-.section-sub{text-align:center;color:var(--ink-dim);max-width:520px;margin:0 auto 44px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.section-sub{text-align:center;color:var(--ink-dim);max-width:560px;margin:0 auto 44px}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .step{
   background:var(--bg-2);border:1px solid var(--line);border-radius:18px;
   padding:30px 24px;text-align:center;
@@ -99,6 +100,13 @@ a{color:inherit;text-decoration:none}
 }
 .commission p{color:var(--ink-dim);margin-top:10px}
 .commission .note{font-size:.85rem;margin-top:18px;color:var(--ink-dim)}
+.commission .products{
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px;
+}
+.commission .prod{
+  background:rgba(245,208,96,.08);border:1px solid rgba(245,208,96,.3);
+  border-radius:50px;padding:7px 18px;font-size:.85rem;font-weight:700;color:var(--gold);
+}
 
 /* BENEFITS */
 .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -109,6 +117,22 @@ a{color:inherit;text-decoration:none}
 .benefit .ico{font-size:1.4rem;flex-shrink:0}
 .benefit h4{font-size:.98rem;margin-bottom:4px}
 .benefit p{color:var(--ink-dim);font-size:.88rem}
+
+/* COMUNIDAD */
+.community{
+  background:linear-gradient(160deg,rgba(37,211,102,.06),var(--bg-2));
+  border:1px solid rgba(37,211,102,.3);border-radius:22px;
+  padding:40px 32px;text-align:center;
+}
+.community h3{font-family:var(--serif);font-size:1.5rem;margin-bottom:10px}
+.community p{color:var(--ink-dim);max-width:520px;margin:0 auto}
+.community .groups{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:24px}
+.community .group{
+  background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.35);
+  border-radius:14px;padding:18px 22px;max-width:250px;text-align:left;
+}
+.community .group h4{font-size:.95rem;color:#4ade80;margin-bottom:4px}
+.community .group p{font-size:.85rem}
 
 /* FAQ */
 .q{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
@@ -143,9 +167,9 @@ footer a{color:var(--gold)}
 
 <!-- HERO -->
 <section class="hero wrap">
-  <div class="hero-badge">💰 Programa de Afiliados</div>
-  <h1>Gana dinero <em>recomendando</em> un producto que se vende solo</h1>
-  <p>Comparte tu enlace de afiliado, y cada vez que alguien compre a través de él, recibes tu comisión directo en tu cuenta. Sin inventario, sin atención al cliente, sin inversión.</p>
+  <div class="hero-badge">💰 Programa de Afiliados · Espiritualidad</div>
+  <h1>Gana dinero con tu propia cuenta, <em>sin crear contenido desde cero</em></h1>
+  <p>Te damos nuestros videos <strong>sin ediciones ni marcas de agua</strong> para que los edites a tu estilo y los subas en tus cuentas de TikTok, Instagram, YouTube Shorts y más. Cada venta que generes te deja el <strong>50% de comisión</strong>, pagada al instante en tu panel de Hotmart.</p>
   <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Quiero afiliarme gratis</a>
   <span class="cta-sub">Registro 100% gratuito a través de Hotmart</span>
 </section>
@@ -154,54 +178,81 @@ footer a{color:var(--gold)}
 <section class="s wrap">
   <div class="commission">
     <div class="big">50%</div>
-    <p>de comisión por cada venta que generes</p>
-    <p class="note">Hotmart te paga automáticamente. Tú solo compartes tu enlace.</p>
+    <p>de comisión en <strong>todos</strong> los productos disponibles</p>
+    <div class="products">
+      <span class="prod">📕 Libro principal</span>
+      <span class="prod">➕ 3 productos adicionales en el checkout</span>
+    </div>
+    <p class="note">Cuando el cliente agrega los adicionales al momento del pago, tu comisión crece en la misma compra.</p>
   </div>
 </section>
 
 <!-- CÓMO FUNCIONA -->
 <section class="s wrap">
   <h2 class="section-title">¿Cómo funciona?</h2>
-  <p class="section-sub">En menos de 5 minutos puedes estar generando tu primer enlace.</p>
+  <p class="section-sub">Un método simple que cualquiera puede seguir, incluso sin experiencia.</p>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
-      <h3>Afíliate gratis</h3>
-      <p>Haz clic en el botón, crea tu cuenta gratuita en Hotmart y solicita tu afiliación al producto.</p>
+      <h3>Afíliate gratis en Hotmart</h3>
+      <p>Crea tu cuenta gratuita, solicita la afiliación y obtén tu enlace único de venta.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
-      <h3>Comparte tu enlace</h3>
-      <p>Hotmart te da un enlace único. Compártelo en WhatsApp, redes sociales, o con tu audiencia.</p>
+      <h3>Descarga nuestros videos</h3>
+      <p>Usa los videos de nuestra cuenta de TikTok. Se descargan sin marca de agua con plataformas gratuitas de internet.</p>
     </div>
     <div class="step">
       <div class="step-num">3</div>
-      <h3>Cobra tus comisiones</h3>
-      <p>Cada compra hecha con tu enlace te genera comisión automática. Hotmart te paga directo.</p>
+      <h3>Edita y resube a tu estilo</h3>
+      <p>Edítalos con CapCut u otra app. La clave: que tu edición se diferencie del resto y enganche. Más visualizaciones = más ventas.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Cobra al instante</h3>
+      <p>Cuando alguien compra con tu enlace, el 50% cae <strong>inmediatamente</strong> en tu panel de Hotmart.</p>
     </div>
   </div>
 </section>
 
 <!-- BENEFICIOS -->
 <section class="s wrap">
-  <h2 class="section-title">¿Por qué este producto?</h2>
-  <p class="section-sub">No todos los productos digitales convierten igual.</p>
+  <h2 class="section-title">¿Por qué trabajar con nosotros?</h2>
+  <p class="section-sub">No estás solo: te damos el material y el acompañamiento.</p>
   <div class="benefits">
     <div class="benefit">
-      <span class="ico">🔥</span>
-      <div><h4>Alta demanda</h4><p>Temática de nicho con público apasionado que busca activamente este contenido.</p></div>
+      <span class="ico">🎬</span>
+      <div><h4>Videos listos para usar</h4><p>Contenido probado en orgánico, sin marcas de agua ni ediciones. Tú le pones tu sello.</p></div>
     </div>
     <div class="benefit">
-      <span class="ico">💸</span>
-      <div><h4>Precio accesible</h4><p>Ticket bajo = decisión de compra rápida. Más ventas con menos esfuerzo.</p></div>
+      <span class="ico">📱</span>
+      <div><h4>Multiplataforma</h4><p>Sube a TikTok, Instagram Reels, YouTube Shorts y cualquier red de videos cortos.</p></div>
     </div>
     <div class="benefit">
-      <span class="ico">🤖</span>
-      <div><h4>Todo automatizado</h4><p>La página de ventas ya está optimizada. Tú solo traes el tráfico, ella convierte.</p></div>
+      <span class="ico">⚡</span>
+      <div><h4>Pago inmediato</h4><p>La comisión entra a tu panel de Hotmart en el momento exacto de la compra.</p></div>
     </div>
     <div class="benefit">
-      <span class="ico">🌎</span>
-      <div><h4>Cobra desde cualquier país</h4><p>Hotmart paga en tu moneda local por transferencia o métodos digitales.</p></div>
+      <span class="ico">🤝</span>
+      <div><h4>Comunidad y guía</h4><p>Grupos de WhatsApp donde resolvemos tus dudas y trabajamos en equipo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDAD -->
+<section class="s wrap">
+  <div class="community">
+    <h3>💬 No trabajas solo</h3>
+    <p>Tenemos dos grupos de WhatsApp para que avances rápido:</p>
+    <div class="groups">
+      <div class="group">
+        <h4>Grupo de Trabajo</h4>
+        <p>Donde los afiliados activos hablamos, compartimos avances y estrategias.</p>
+      </div>
+      <div class="group">
+        <h4>Grupo Filtro</h4>
+        <p>¿Tienes dudas de cómo empezar? Escribe aquí y te guiamos de la manera más sencilla y rápida posible.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -215,23 +266,31 @@ footer a{color:var(--gold)}
     <div class="a"><p>Nada. El registro en Hotmart y la afiliación al producto son 100% gratuitos.</p></div>
   </div>
   <div class="q">
-    <button>¿Necesito experiencia o seguidores?<span class="plus"></span></button>
-    <div class="a"><p>No. Puedes empezar compartiendo tu enlace por WhatsApp con conocidos, en grupos o en tus redes. Mientras más personas lo vean, más posibilidades de venta.</p></div>
+    <button>¿Necesito aparecer en cámara o crear videos propios?<span class="plus"></span></button>
+    <div class="a"><p>No. Usas los videos de nuestra cuenta de TikTok: los descargas sin marca de agua, los editas con CapCut (o la app que prefieras) y los subes a tus cuentas.</p></div>
   </div>
   <div class="q">
-    <button>¿Cómo y cuándo me pagan?<span class="plus"></span></button>
-    <div class="a"><p>Hotmart acumula tus comisiones y las libera automáticamente según su período de garantía. Puedes retirarlas a tu cuenta bancaria o billetera digital.</p></div>
+    <button>¿De dónde saco los videos?<span class="plus"></span></button>
+    <div class="a"><p>De nuestra cuenta oficial de TikTok. Se descargan sin la marca de agua usando plataformas gratuitas de internet. En el Grupo Filtro te explicamos exactamente cómo.</p></div>
   </div>
   <div class="q">
-    <button>¿Cómo sé cuántas ventas llevo?<span class="plus"></span></button>
-    <div class="a"><p>En tu panel de Hotmart ves en tiempo real los clics, las ventas y las comisiones generadas con tu enlace.</p></div>
+    <button>¿Cuándo y cómo me pagan?<span class="plus"></span></button>
+    <div class="a"><p>El dinero entra a tu panel de Hotmart inmediatamente cuando el cliente realiza la compra. De ahí lo retiras a tu cuenta bancaria o billetera digital.</p></div>
+  </div>
+  <div class="q">
+    <button>¿Qué gano además del libro principal?<span class="plus"></span></button>
+    <div class="a"><p>Tenemos el libro principal y 3 productos adicionales que aparecen en el checkout de pago. Ganas el 50% de comisión en todos — si el cliente los agrega, tu comisión crece en esa misma compra.</p></div>
+  </div>
+  <div class="q">
+    <button>¿Cuál es la clave para vender más?<span class="plus"></span></button>
+    <div class="a"><p>Diferenciarte. Haz ediciones distintas a las de los demás afiliados, que a la gente le gusten y generen visualizaciones. Las visualizaciones se traducen en ventas.</p></div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <section class="final wrap">
   <h2 class="section-title">Empieza a ganar hoy mismo</h2>
-  <p class="section-sub">Tu enlace de afiliado te espera. El registro toma menos de 5 minutos.</p>
+  <p class="section-sub">Afíliate gratis, descarga tu primer video y súbelo hoy. El 50% de cada venta es tuyo.</p>
   <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Afiliarme gratis ahora</a>
 </section>
 
