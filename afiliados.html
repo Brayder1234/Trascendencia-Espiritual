@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gana Dinero con Espiritualidad | Programa de Afiliados</title>
-<meta name="description" content="Gana 50% de comisión recomendando nuestros libros. Te damos los videos listos, tú los editas y los subes. Pago inmediato vía Hotmart.">
+<title>Gana 50% de Comisión con Videos Ya Hechos | Programa de Afiliados</title>
+<meta name="description" content="Te damos los videos, tú los subes, y cobras el 50% de cada venta al instante. Sin experiencia, sin aparecer en cámara, sin invertir un peso.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -16,12 +16,13 @@
   --red:#e01e1e;
   --red-2:#ff4d4d;
   --gold:#f5d060;
+  --gold-2:#ffe9a3;
   --gold-dark:#a07008;
   --ink:#ffffff;
   --ink-dim:#b9b1b2;
   --line:rgba(224,30,30,.28);
-  --green:#1f8a4c;
-  --wa:#25D366;
+  --line-gold:rgba(245,208,96,.3);
+  --green:#25D366;
   --shadow:0 18px 60px rgba(0,0,0,.65);
   --font:'Lato',system-ui,-apple-system,sans-serif;
   --serif:'Lora',Georgia,serif;
@@ -42,81 +43,168 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:860px;margin:0 auto;padding:0 24px}
 .s{padding:64px 0}
 
+/* TOPBAR URGENCIA */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(90deg,#7a0e0e,var(--red),#7a0e0e);
+  text-align:center;padding:9px 16px;
+  font-size:.8rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;
+  box-shadow:0 2px 18px rgba(224,30,30,.4);
+}
+.topbar .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:8px;animation:pulse 1.3s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+
 /* HERO */
-.hero{text-align:center;padding:80px 0 60px}
+.hero{text-align:center;padding:68px 0 56px}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(245,208,96,.1);border:1px solid rgba(245,208,96,.35);
+  background:rgba(245,208,96,.1);border:1px solid var(--line-gold);
   color:var(--gold);border-radius:50px;padding:8px 20px;
-  font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
-  margin-bottom:28px;
+  font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:26px;
 }
 .hero h1{
-  font-family:var(--serif);font-size:clamp(2rem,6vw,3.4rem);line-height:1.15;
-  margin-bottom:20px;
+  font-family:var(--serif);font-size:clamp(2.1rem,6.5vw,3.6rem);line-height:1.12;
+  margin-bottom:22px;
 }
 .hero h1 em{color:var(--gold);font-style:normal}
-.hero p{color:var(--ink-dim);font-size:1.1rem;max-width:620px;margin:0 auto 36px}
+.hero h1 .tachado{text-decoration:line-through;color:var(--ink-dim);font-size:.6em;display:block;margin-bottom:6px;font-family:var(--font);font-weight:700;letter-spacing:.02em}
+.hero .sub{color:var(--ink-dim);font-size:1.12rem;max-width:640px;margin:0 auto 14px}
+.hero .sub strong{color:var(--ink)}
+.hero .bullets{
+  display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+  margin:26px auto 34px;font-size:.92rem;font-weight:700;
+}
+.hero .bullets span{display:flex;align-items:center;gap:7px;color:var(--gold-2)}
 
 /* CTA */
 .cta{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
   background:linear-gradient(135deg,#a07008,#f5d060,#a07008);
-  color:#000;font-weight:900;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;
-  border-radius:50px;padding:18px 42px;
-  box-shadow:0 6px 28px rgba(200,150,10,.5),inset 0 1px 0 rgba(255,255,255,.35);
-  transition:transform .25s ease,box-shadow .25s ease;
+  background-size:200% auto;
+  color:#000;font-weight:900;font-size:1.08rem;letter-spacing:.04em;text-transform:uppercase;
+  border-radius:50px;padding:19px 46px;
+  box-shadow:0 6px 30px rgba(200,150,10,.55),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .25s ease,box-shadow .25s ease,background-position .4s;
   border:1px solid rgba(255,220,80,.3);
+  animation:ctaGlow 2.2s ease-in-out infinite;
 }
-.cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 40px rgba(200,150,10,.7)}
-.cta-sub{display:block;margin-top:14px;color:var(--ink-dim);font-size:.85rem}
+@keyframes ctaGlow{0%,100%{box-shadow:0 6px 30px rgba(200,150,10,.45)}50%{box-shadow:0 6px 44px rgba(245,208,96,.75)}}
+.cta:hover{transform:translateY(-3px) scale(1.03);background-position:right center}
+.cta-sub{display:block;margin-top:13px;color:var(--ink-dim);font-size:.85rem}
+.cta-sub b{color:#4ade80}
+
+/* SOCIAL STRIP */
+.social-strip{
+  display:flex;justify-content:center;gap:26px;flex-wrap:wrap;
+  padding:22px 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-size:.9rem;color:var(--ink-dim);text-align:center;
+}
+.social-strip b{color:var(--gold);font-size:1.05rem}
+
+/* PAIN */
+.pain{max-width:660px;margin:0 auto;text-align:center}
+.pain h2{font-family:var(--serif);font-size:clamp(1.7rem,5vw,2.5rem);margin-bottom:18px;line-height:1.2}
+.pain h2 em{color:var(--red-2);font-style:normal}
+.pain p{color:var(--ink-dim);margin-bottom:14px;font-size:1.03rem}
+.pain p strong{color:var(--ink)}
+.pain .flecha{font-size:1.6rem;margin:16px 0;color:var(--gold)}
+
+/* COMISIÓN */
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,5vw,2.4rem);text-align:center;margin-bottom:12px;line-height:1.2}
+.section-title em{color:var(--gold);font-style:normal}
+.section-sub{text-align:center;color:var(--ink-dim);max-width:560px;margin:0 auto 44px}
+.commission{
+  background:linear-gradient(160deg,var(--bg-3),var(--bg-2));
+  border:1px solid var(--line-gold);border-radius:22px;
+  padding:46px 32px;text-align:center;box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+}
+.commission::before{
+  content:"";position:absolute;top:-60%;left:-20%;width:60%;height:220%;
+  background:linear-gradient(100deg,transparent,rgba(245,208,96,.07),transparent);
+  transform:rotate(15deg);animation:shine 3.5s linear infinite;
+}
+@keyframes shine{0%{left:-60%}100%{left:120%}}
+.commission .big{
+  font-family:var(--serif);font-size:clamp(3rem,11vw,5rem);
+  color:var(--gold);font-weight:700;line-height:1;
+}
+.commission p{color:var(--ink-dim);margin-top:10px;font-size:1.05rem}
+.commission p strong{color:var(--ink)}
+.commission .products{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+.commission .prod{
+  background:rgba(245,208,96,.08);border:1px solid var(--line-gold);
+  border-radius:50px;padding:8px 20px;font-size:.88rem;font-weight:700;color:var(--gold);
+}
+.commission .note{font-size:.9rem;margin-top:20px;color:var(--gold-2)}
+
+/* CALCULADORA */
+.calc{
+  background:var(--bg-2);border:1px solid var(--line-gold);border-radius:22px;
+  padding:38px 30px;box-shadow:var(--shadow);
+}
+.calc h3{font-family:var(--serif);font-size:1.5rem;text-align:center;margin-bottom:6px}
+.calc .calc-sub{text-align:center;color:var(--ink-dim);font-size:.9rem;margin-bottom:28px}
+.calc label{display:block;font-weight:900;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;text-align:center}
+.calc input[type=range]{
+  width:100%;appearance:none;height:8px;border-radius:6px;
+  background:linear-gradient(90deg,var(--gold) var(--fill,30%),#2a1a1c var(--fill,30%));
+  outline:none;margin-bottom:8px;cursor:pointer;
+}
+.calc input[type=range]::-webkit-slider-thumb{
+  appearance:none;width:26px;height:26px;border-radius:50%;
+  background:var(--gold);border:3px solid #000;box-shadow:0 0 14px rgba(245,208,96,.8);
+}
+.calc .ventas-num{text-align:center;font-weight:900;font-size:1.15rem;margin-bottom:24px}
+.calc .resultado{
+  text-align:center;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.35);
+  border-radius:16px;padding:24px;
+}
+.calc .resultado .label{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+.calc .resultado .monto{font-family:var(--serif);font-size:clamp(2rem,7vw,3rem);color:#4ade80;font-weight:700;line-height:1.15}
+.calc .resultado .peso{font-size:.85rem;color:var(--ink-dim);margin-top:4px}
+.calc .disclaimer{font-size:.75rem;color:var(--ink-dim);text-align:center;margin-top:14px;opacity:.7}
 
 /* STEPS */
-.section-title{font-family:var(--serif);font-size:clamp(1.6rem,4.5vw,2.3rem);text-align:center;margin-bottom:12px}
-.section-sub{text-align:center;color:var(--ink-dim);max-width:560px;margin:0 auto 44px}
 .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .step{
   background:var(--bg-2);border:1px solid var(--line);border-radius:18px;
-  padding:30px 24px;text-align:center;
+  padding:30px 24px;text-align:center;position:relative;
+  transition:transform .25s ease,border-color .25s ease;
 }
+.step:hover{transform:translateY(-4px);border-color:var(--line-gold)}
 .step-num{
-  width:44px;height:44px;border-radius:50%;margin:0 auto 16px;
+  width:46px;height:46px;border-radius:50%;margin:0 auto 16px;
   display:flex;align-items:center;justify-content:center;
   background:rgba(245,208,96,.12);border:1px solid rgba(245,208,96,.4);
-  color:var(--gold);font-weight:900;font-size:1.2rem;
+  color:var(--gold);font-weight:900;font-size:1.25rem;
 }
 .step h3{font-size:1.05rem;margin-bottom:8px}
 .step p{color:var(--ink-dim);font-size:.92rem}
+.step p strong{color:var(--gold-2)}
 
-/* HIGHLIGHT COMISIÓN */
-.commission{
+/* STACK DE VALOR */
+.stack{
   background:linear-gradient(160deg,var(--bg-3),var(--bg-2));
-  border:1px solid rgba(245,208,96,.35);border-radius:22px;
-  padding:44px 32px;text-align:center;box-shadow:var(--shadow);
+  border:1px solid var(--line-gold);border-radius:22px;padding:40px 32px;box-shadow:var(--shadow);
 }
-.commission .big{
-  font-family:var(--serif);font-size:clamp(2.6rem,9vw,4.2rem);
-  color:var(--gold);font-weight:700;line-height:1;
+.stack h3{font-family:var(--serif);font-size:1.6rem;text-align:center;margin-bottom:28px}
+.stack ul{list-style:none}
+.stack li{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px 0;border-bottom:1px solid rgba(245,208,96,.12);
+  font-size:1rem;
 }
-.commission p{color:var(--ink-dim);margin-top:10px}
-.commission .note{font-size:.85rem;margin-top:18px;color:var(--ink-dim)}
-.commission .products{
-  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px;
+.stack li:last-child{border-bottom:none}
+.stack .check{color:#4ade80;font-size:1.15rem;flex-shrink:0;font-weight:900}
+.stack li b{color:var(--gold-2)}
+.stack .total{
+  margin-top:26px;text-align:center;
+  background:rgba(245,208,96,.07);border:1px dashed var(--line-gold);border-radius:14px;padding:20px;
 }
-.commission .prod{
-  background:rgba(245,208,96,.08);border:1px solid rgba(245,208,96,.3);
-  border-radius:50px;padding:7px 18px;font-size:.85rem;font-weight:700;color:var(--gold);
-}
-
-/* BENEFITS */
-.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.benefit{
-  display:flex;gap:14px;align-items:flex-start;
-  background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:20px;
-}
-.benefit .ico{font-size:1.4rem;flex-shrink:0}
-.benefit h4{font-size:.98rem;margin-bottom:4px}
-.benefit p{color:var(--ink-dim);font-size:.88rem}
+.stack .total .t1{font-size:.95rem;color:var(--ink-dim)}
+.stack .total .t2{font-family:var(--serif);font-size:1.9rem;color:var(--gold);font-weight:700}
 
 /* COMUNIDAD */
 .community{
@@ -124,7 +212,7 @@ a{color:inherit;text-decoration:none}
   border:1px solid rgba(37,211,102,.3);border-radius:22px;
   padding:40px 32px;text-align:center;
 }
-.community h3{font-family:var(--serif);font-size:1.5rem;margin-bottom:10px}
+.community h3{font-family:var(--serif);font-size:1.55rem;margin-bottom:10px}
 .community p{color:var(--ink-dim);max-width:520px;margin:0 auto}
 .community .groups{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:24px}
 .community .group{
@@ -150,156 +238,242 @@ a{color:inherit;text-decoration:none}
 .q .a p{padding:0 22px 20px;color:var(--ink-dim)}
 
 /* FINAL */
-.final{text-align:center;padding:70px 0 90px}
+.final{text-align:center;padding:76px 0 100px}
+.final .aviso{
+  display:inline-block;background:rgba(224,30,30,.12);border:1px solid var(--line);
+  color:var(--red-2);border-radius:50px;padding:8px 22px;font-size:.82rem;font-weight:900;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px;
+}
 
-footer{border-top:1px solid var(--line);padding:36px 24px;text-align:center;color:var(--ink-dim);font-size:.85rem}
+/* STICKY CTA MOBILE */
+.sticky-cta{
+  position:fixed;bottom:0;left:0;right:0;z-index:99;
+  background:rgba(10,5,6,.92);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line-gold);
+  padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:14px;
+  transform:translateY(110%);transition:transform .4s ease;
+}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta .info{font-size:.8rem;font-weight:900;color:var(--gold);line-height:1.3}
+.sticky-cta .cta{padding:13px 26px;font-size:.85rem;animation:none}
+
+/* SCROLL REVEAL */
+.sr{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.sr.visible{opacity:1;transform:none}
+
+footer{border-top:1px solid var(--line);padding:36px 24px 110px;text-align:center;color:var(--ink-dim);font-size:.85rem}
 footer a{color:var(--gold)}
 
 @media(max-width:720px){
   .steps{grid-template-columns:1fr}
-  .benefits{grid-template-columns:1fr}
   .s{padding:48px 0}
+  .hero{padding:52px 0 44px}
+  .sticky-cta .info{display:none}
 }
 </style>
 </head>
 <body>
 <div class="stars"></div>
 
+<!-- TOPBAR -->
+<div class="topbar"><span class="dot"></span>Cupos de afiliación abiertos · 50% de comisión en TODOS los productos</div>
+
 <!-- HERO -->
 <section class="hero wrap">
-  <div class="hero-badge">💰 Programa de Afiliados · Espiritualidad</div>
-  <h1>Gana dinero con tu propia cuenta, <em>sin crear contenido desde cero</em></h1>
-  <p>Te damos nuestros videos <strong>sin ediciones ni marcas de agua</strong> para que los edites a tu estilo y los subas en tus cuentas de TikTok, Instagram, YouTube Shorts y más. Cada venta que generes te deja el <strong>50% de comisión</strong>, pagada al instante en tu panel de Hotmart.</p>
-  <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Quiero afiliarme gratis</a>
-  <span class="cta-sub">Registro 100% gratuito a través de Hotmart</span>
+  <div class="hero-badge">💰 Programa de Afiliados · Nicho Espiritualidad</div>
+  <h1>
+    <span class="tachado">Olvídate de crear contenido desde cero…</span>
+    Nosotros ponemos los videos. <em>Tú te quedas con el 50%</em> de cada venta.
+  </h1>
+  <p class="sub">Descarga nuestros videos <strong>ya probados en orgánico</strong>, edítalos a tu estilo con CapCut, súbelos a tus redes… y cada compra que generes te paga <strong>al instante</strong> en tu panel de Hotmart.</p>
+  <div class="bullets">
+    <span>✅ Sin experiencia</span>
+    <span>✅ Sin aparecer en cámara</span>
+    <span>✅ Sin invertir un peso</span>
+  </div>
+  <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Quiero mi 50% — Afiliarme gratis</a>
+  <span class="cta-sub">Registro <b>100% gratuito</b> · Toma menos de 5 minutos</span>
+</section>
+
+<!-- SOCIAL STRIP -->
+<div class="social-strip">
+  <span><b>50%</b><br>de comisión real</span>
+  <span><b>Pago inmediato</b><br>directo a tu panel</span>
+  <span><b>4 productos</b><br>comisionables por venta</span>
+  <span><b>Videos listos</b><br>sin marca de agua</span>
+</div>
+
+<!-- PAIN → SOLUCIÓN -->
+<section class="s wrap sr">
+  <div class="pain">
+    <h2>Seguir viendo cómo otros ganan por internet <em>también es una decisión</em>.</h2>
+    <p>La mayoría no empieza por lo mismo: <strong>"no sé qué vender", "no sé editar", "no tengo seguidores", "no tengo dinero para invertir"</strong>.</p>
+    <p>Aquí ninguna de esas excusas aplica:</p>
+    <div class="flecha">↓</div>
+    <p><strong>El producto ya existe. Los videos ya existen. La página de ventas ya convierte.</strong> Lo único que falta en la ecuación eres tú subiendo el contenido con TU enlace.</p>
+  </div>
 </section>
 
 <!-- COMISIÓN -->
-<section class="s wrap">
+<section class="s wrap sr">
   <div class="commission">
     <div class="big">50%</div>
-    <p>de comisión en <strong>todos</strong> los productos disponibles</p>
+    <p>de comisión en <strong>TODOS</strong> los productos del embudo</p>
     <div class="products">
       <span class="prod">📕 Libro principal</span>
-      <span class="prod">➕ 3 productos adicionales en el checkout</span>
+      <span class="prod">➕ 3 productos extra en el checkout</span>
     </div>
-    <p class="note">Cuando el cliente agrega los adicionales al momento del pago, tu comisión crece en la misma compra.</p>
+    <p class="note">⚡ Si el cliente agrega los adicionales al pagar, tu comisión se multiplica en esa MISMA compra.</p>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="s wrap sr">
+  <h2 class="section-title">¿Cuánto puedes <em>ganar</em>?</h2>
+  <p class="section-sub">Mueve el control y míralo con tus propios ojos.</p>
+  <div class="calc">
+    <h3>Calculadora de comisiones</h3>
+    <p class="calc-sub">Basada en el precio del libro principal (USD $9,90 → tu parte: $4,95 por venta)</p>
+    <label for="ventasRange">Ventas por semana</label>
+    <input type="range" id="ventasRange" min="1" max="100" value="10">
+    <div class="ventas-num"><span id="ventasNum">10</span> ventas/semana</div>
+    <div class="resultado">
+      <div class="label">Ganarías al mes aprox.</div>
+      <div class="monto" id="montoMes">$198 USD</div>
+      <div class="peso" id="montoPeso">≈ $792.000 pesos colombianos</div>
+    </div>
+    <p class="disclaimer">*Cálculo ilustrativo solo con el libro principal. No incluye los 3 productos adicionales del checkout, que aumentan la comisión por compra. Los resultados dependen de tu constancia.</p>
   </div>
 </section>
 
 <!-- CÓMO FUNCIONA -->
-<section class="s wrap">
-  <h2 class="section-title">¿Cómo funciona?</h2>
-  <p class="section-sub">Un método simple que cualquiera puede seguir, incluso sin experiencia.</p>
+<section class="s wrap sr">
+  <h2 class="section-title">Tu dinero en <em>4 pasos</em></h2>
+  <p class="section-sub">Tan simple que puedes empezar hoy mismo, desde tu celular.</p>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <h3>Afíliate gratis en Hotmart</h3>
-      <p>Crea tu cuenta gratuita, solicita la afiliación y obtén tu enlace único de venta.</p>
+      <p>Crea tu cuenta, solicita la afiliación y obtén <strong>tu enlace único</strong> de venta. 5 minutos.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
       <h3>Descarga nuestros videos</h3>
-      <p>Usa los videos de nuestra cuenta de TikTok. Se descargan sin marca de agua con plataformas gratuitas de internet.</p>
+      <p>Directo de nuestra cuenta de TikTok, <strong>sin marca de agua</strong>, con plataformas gratuitas de internet.</p>
     </div>
     <div class="step">
       <div class="step-num">3</div>
-      <h3>Edita y resube a tu estilo</h3>
-      <p>Edítalos con CapCut u otra app. La clave: que tu edición se diferencie del resto y enganche. Más visualizaciones = más ventas.</p>
+      <h3>Edita y súbelos a tu estilo</h3>
+      <p>CapCut y listo. La clave: <strong>diferénciate</strong> de los demás afiliados. Más visualizaciones = más ventas.</p>
     </div>
     <div class="step">
       <div class="step-num">4</div>
       <h3>Cobra al instante</h3>
-      <p>Cuando alguien compra con tu enlace, el 50% cae <strong>inmediatamente</strong> en tu panel de Hotmart.</p>
+      <p>El cliente compra con tu enlace y el 50% cae <strong>inmediatamente</strong> en tu panel de Hotmart.</p>
     </div>
   </div>
 </section>
 
-<!-- BENEFICIOS -->
-<section class="s wrap">
-  <h2 class="section-title">¿Por qué trabajar con nosotros?</h2>
-  <p class="section-sub">No estás solo: te damos el material y el acompañamiento.</p>
-  <div class="benefits">
-    <div class="benefit">
-      <span class="ico">🎬</span>
-      <div><h4>Videos listos para usar</h4><p>Contenido probado en orgánico, sin marcas de agua ni ediciones. Tú le pones tu sello.</p></div>
-    </div>
-    <div class="benefit">
-      <span class="ico">📱</span>
-      <div><h4>Multiplataforma</h4><p>Sube a TikTok, Instagram Reels, YouTube Shorts y cualquier red de videos cortos.</p></div>
-    </div>
-    <div class="benefit">
-      <span class="ico">⚡</span>
-      <div><h4>Pago inmediato</h4><p>La comisión entra a tu panel de Hotmart en el momento exacto de la compra.</p></div>
-    </div>
-    <div class="benefit">
-      <span class="ico">🤝</span>
-      <div><h4>Comunidad y guía</h4><p>Grupos de WhatsApp donde resolvemos tus dudas y trabajamos en equipo.</p></div>
+<!-- STACK DE VALOR -->
+<section class="s wrap sr">
+  <div class="stack">
+    <h3>Todo lo que recibes al afiliarte</h3>
+    <ul>
+      <li><span class="check">✓</span><span><b>Banco de videos probados en orgánico</b> — sin ediciones ni marcas de agua, listos para que les pongas tu sello</span></li>
+      <li><span class="check">✓</span><span><b>50% de comisión en 4 productos</b> — libro principal + 3 adicionales del checkout</span></li>
+      <li><span class="check">✓</span><span><b>Página de ventas ya optimizada</b> — tú solo traes el tráfico, ella se encarga de convertir</span></li>
+      <li><span class="check">✓</span><span><b>Grupo de Trabajo en WhatsApp</b> — estrategias y avances entre afiliados activos</span></li>
+      <li><span class="check">✓</span><span><b>Grupo Filtro de soporte</b> — cualquier duda te la resolvemos de la forma más rápida y sencilla</span></li>
+      <li><span class="check">✓</span><span><b>Pagos automáticos vía Hotmart</b> — retiras a tu banco o billetera digital, desde cualquier país</span></li>
+    </ul>
+    <div class="total">
+      <div class="t1">Costo de entrar al programa:</div>
+      <div class="t2">$0 — Gratis</div>
     </div>
   </div>
+</section>
+
+<!-- CTA INTERMEDIO -->
+<section class="wrap sr" style="text-align:center;padding:10px 24px 30px">
+  <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Sí, quiero empezar a ganar</a>
+  <span class="cta-sub">Sin costo · Sin permanencia · Sin letra pequeña</span>
 </section>
 
 <!-- COMUNIDAD -->
-<section class="s wrap">
+<section class="s wrap sr">
   <div class="community">
     <h3>💬 No trabajas solo</h3>
-    <p>Tenemos dos grupos de WhatsApp para que avances rápido:</p>
+    <p>Entras a un equipo que ya está vendiendo. Dos grupos de WhatsApp para que avances rápido:</p>
     <div class="groups">
       <div class="group">
         <h4>Grupo de Trabajo</h4>
-        <p>Donde los afiliados activos hablamos, compartimos avances y estrategias.</p>
+        <p>Donde los afiliados activos compartimos avances y estrategias que están funcionando.</p>
       </div>
       <div class="group">
         <h4>Grupo Filtro</h4>
-        <p>¿Tienes dudas de cómo empezar? Escribe aquí y te guiamos de la manera más sencilla y rápida posible.</p>
+        <p>¿Dudas para empezar? Escribe y te guiamos paso a paso, sin enredos.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="s wrap">
-  <h2 class="section-title">Preguntas frecuentes</h2>
+<section class="s wrap sr">
+  <h2 class="section-title">Lo que todos preguntan <em>antes de entrar</em></h2>
   <p class="section-sub"></p>
   <div class="q">
-    <button>¿Cuánto cuesta afiliarme?<span class="plus"></span></button>
-    <div class="a"><p>Nada. El registro en Hotmart y la afiliación al producto son 100% gratuitos.</p></div>
+    <button>¿De verdad es gratis afiliarme?<span class="plus"></span></button>
+    <div class="a"><p>Sí. El registro en Hotmart y la afiliación al producto no cuestan nada. Nunca te pediremos dinero para entrar.</p></div>
   </div>
   <div class="q">
-    <button>¿Necesito aparecer en cámara o crear videos propios?<span class="plus"></span></button>
-    <div class="a"><p>No. Usas los videos de nuestra cuenta de TikTok: los descargas sin marca de agua, los editas con CapCut (o la app que prefieras) y los subes a tus cuentas.</p></div>
+    <button>¿Necesito aparecer en cámara o saber editar profesional?<span class="plus"></span></button>
+    <div class="a"><p>No. Los videos ya están hechos. Solo los descargas sin marca de agua, les das tu toque en CapCut (gratis) y los subes. Nadie tiene que ver tu cara.</p></div>
+  </div>
+  <div class="q">
+    <button>¿Y si no tengo seguidores?<span class="plus"></span></button>
+    <div class="a"><p>Mejor todavía: creas una cuenta nueva enfocada en espiritualidad y la alimentas solo con estos videos. TikTok empuja el contenido nuevo — un solo video viral puede generar tus primeras ventas.</p></div>
   </div>
   <div class="q">
     <button>¿De dónde saco los videos?<span class="plus"></span></button>
-    <div class="a"><p>De nuestra cuenta oficial de TikTok. Se descargan sin la marca de agua usando plataformas gratuitas de internet. En el Grupo Filtro te explicamos exactamente cómo.</p></div>
+    <div class="a"><p>De nuestra cuenta oficial de TikTok. Se descargan sin la marca de agua usando plataformas gratuitas de internet. En el Grupo Filtro te explicamos exactamente cómo, paso a paso.</p></div>
   </div>
   <div class="q">
-    <button>¿Cuándo y cómo me pagan?<span class="plus"></span></button>
-    <div class="a"><p>El dinero entra a tu panel de Hotmart inmediatamente cuando el cliente realiza la compra. De ahí lo retiras a tu cuenta bancaria o billetera digital.</p></div>
+    <button>¿Cuándo me pagan?<span class="plus"></span></button>
+    <div class="a"><p>En el instante en que el cliente compra, tu 50% aparece en tu panel de Hotmart. De ahí lo retiras a tu cuenta bancaria o billetera digital según los plazos de Hotmart.</p></div>
   </div>
   <div class="q">
     <button>¿Qué gano además del libro principal?<span class="plus"></span></button>
-    <div class="a"><p>Tenemos el libro principal y 3 productos adicionales que aparecen en el checkout de pago. Ganas el 50% de comisión en todos — si el cliente los agrega, tu comisión crece en esa misma compra.</p></div>
+    <div class="a"><p>Hay 3 productos adicionales que aparecen en el checkout. Si el cliente los agrega al pagar, ganas el 50% de cada uno en esa misma compra — una sola venta puede pagarte varias comisiones.</p></div>
   </div>
   <div class="q">
-    <button>¿Cuál es la clave para vender más?<span class="plus"></span></button>
-    <div class="a"><p>Diferenciarte. Haz ediciones distintas a las de los demás afiliados, que a la gente le gusten y generen visualizaciones. Las visualizaciones se traducen en ventas.</p></div>
+    <button>¿Cuál es el secreto de los que más venden?<span class="plus"></span></button>
+    <div class="a"><p>Constancia + diferenciación. Suben videos todos los días y hacen ediciones distintas a las del resto de afiliados. Las visualizaciones se convierten en clics, y los clics en ventas.</p></div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
-<section class="final wrap">
-  <h2 class="section-title">Empieza a ganar hoy mismo</h2>
-  <p class="section-sub">Afíliate gratis, descarga tu primer video y súbelo hoy. El 50% de cada venta es tuyo.</p>
+<section class="final wrap sr">
+  <div class="aviso">⚠️ El nicho se llena rápido — los primeros se posicionan</div>
+  <h2 class="section-title">Cada día que no subes contenido,<br><em>otro afiliado lo está subiendo por ti</em></h2>
+  <p class="section-sub">El producto existe, los videos existen, el sistema paga solo. La única variable eres tú.</p>
   <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Afiliarme gratis ahora</a>
+  <span class="cta-sub">Registro en menos de 5 minutos · <b>50% tuyo desde la primera venta</b></span>
 </section>
 
 <footer>
   <p><a href="index.html">← Volver a la página principal</a></p>
   <p style="margin-top:8px">Copyright © · Todos los derechos reservados.</p>
+  <p style="margin-top:8px;font-size:.75rem;opacity:.6">Los ingresos dependen del esfuerzo y constancia de cada afiliado. Hotmart es la plataforma que procesa las afiliaciones y pagos.</p>
 </footer>
 
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <span class="info">50% de comisión<br>Pago inmediato</span>
+  <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Afiliarme gratis</a>
+</div>
+
 <script>
+/* FAQ */
 document.querySelectorAll('.q button').forEach(function(btn){
   btn.addEventListener('click', function(){
     var q = btn.parentElement;
@@ -308,6 +482,46 @@ document.querySelectorAll('.q button').forEach(function(btn){
     a.style.maxHeight = open ? a.scrollHeight + 'px' : 0;
   });
 });
+
+/* CALCULADORA */
+(function(){
+  var range = document.getElementById('ventasRange');
+  var num = document.getElementById('ventasNum');
+  var mes = document.getElementById('montoMes');
+  var peso = document.getElementById('montoPeso');
+  var COMISION = 4.95;   /* 50% de $9,90 */
+  var TRM = 4000;        /* aprox COP por USD */
+  function update(){
+    var v = parseInt(range.value, 10);
+    num.textContent = v;
+    var usd = Math.round(v * COMISION * 4.33);
+    mes.textContent = '$' + usd.toLocaleString('en-US') + ' USD';
+    peso.textContent = '≈ $' + (usd * TRM).toLocaleString('es-CO') + ' pesos colombianos';
+    range.style.setProperty('--fill', (v / 100 * 100) + '%');
+  }
+  range.addEventListener('input', update);
+  update();
+})();
+
+/* STICKY CTA — aparece tras pasar el hero */
+(function(){
+  var sticky = document.getElementById('stickyCta');
+  var hero = document.querySelector('.hero');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > hero.offsetHeight){ sticky.classList.add('show'); }
+    else{ sticky.classList.remove('show'); }
+  }, {passive:true});
+})();
+
+/* SCROLL REVEAL */
+(function(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.sr').forEach(function(el){ obs.observe(el); });
+})();
 </script>
 </body>
 </html>
