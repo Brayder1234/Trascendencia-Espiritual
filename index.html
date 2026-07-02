@@ -1096,13 +1096,13 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 /* ---- Viewers counter ---- */
 (function(){
   var el=document.getElementById('viewers');
-  var current=Math.floor(Math.random()*131)+20;
+  var current=Math.floor(Math.random()*61)+95; /* arranca entre 95 y 155 */
   el.textContent=current;
   setInterval(function(){
-    var delta=Math.floor(Math.random()*5)-2;
-    current=Math.min(150,Math.max(20,current+delta));
+    var delta=Math.floor(Math.random()*7)-3; /* -3 a +3 */
+    current=Math.min(180,Math.max(60,current+delta));
     el.textContent=current;
-  },60000);
+  },9000);
 })();
 
 /* ---- Staggered reveal ---- */
