@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gana Dinero Recomendando | Programa de Afiliados</title>
+<meta name="description" content="Únete al programa de afiliados y gana comisiones por cada venta que generes. Registro gratis en Hotmart.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000;
+  --bg-2:#0e0708;
+  --bg-3:#1a0c0e;
+  --red:#e01e1e;
+  --red-2:#ff4d4d;
+  --gold:#f5d060;
+  --gold-dark:#a07008;
+  --ink:#ffffff;
+  --ink-dim:#b9b1b2;
+  --line:rgba(224,30,30,.28);
+  --green:#1f8a4c;
+  --shadow:0 18px 60px rgba(0,0,0,.65);
+  --font:'Lato',system-ui,-apple-system,sans-serif;
+  --serif:'Lora',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.stars{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(1200px 700px at 50% -10%, rgba(245,208,96,.08), transparent 60%),
+  radial-gradient(900px 600px at 90% 20%, rgba(224,30,30,.10), transparent 55%),
+  radial-gradient(800px 600px at 10% 80%, rgba(224,30,30,.06), transparent 55%),
+  var(--bg);
+}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+.s{padding:64px 0}
+
+/* HERO */
+.hero{text-align:center;padding:80px 0 60px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,208,96,.1);border:1px solid rgba(245,208,96,.35);
+  color:var(--gold);border-radius:50px;padding:8px 20px;
+  font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(2rem,6vw,3.4rem);line-height:1.15;
+  margin-bottom:20px;
+}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:var(--ink-dim);font-size:1.1rem;max-width:560px;margin:0 auto 36px}
+
+/* CTA */
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,#a07008,#f5d060,#a07008);
+  color:#000;font-weight:900;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;
+  border-radius:50px;padding:18px 42px;
+  box-shadow:0 6px 28px rgba(200,150,10,.5),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .25s ease,box-shadow .25s ease;
+  border:1px solid rgba(255,220,80,.3);
+}
+.cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 40px rgba(200,150,10,.7)}
+.cta-sub{display:block;margin-top:14px;color:var(--ink-dim);font-size:.85rem}
+
+/* STEPS */
+.section-title{font-family:var(--serif);font-size:clamp(1.6rem,4.5vw,2.3rem);text-align:center;margin-bottom:12px}
+.section-sub{text-align:center;color:var(--ink-dim);max-width:520px;margin:0 auto 44px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:18px;
+  padding:30px 24px;text-align:center;
+}
+.step-num{
+  width:44px;height:44px;border-radius:50%;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(245,208,96,.12);border:1px solid rgba(245,208,96,.4);
+  color:var(--gold);font-weight:900;font-size:1.2rem;
+}
+.step h3{font-size:1.05rem;margin-bottom:8px}
+.step p{color:var(--ink-dim);font-size:.92rem}
+
+/* HIGHLIGHT COMISIÓN */
+.commission{
+  background:linear-gradient(160deg,var(--bg-3),var(--bg-2));
+  border:1px solid rgba(245,208,96,.35);border-radius:22px;
+  padding:44px 32px;text-align:center;box-shadow:var(--shadow);
+}
+.commission .big{
+  font-family:var(--serif);font-size:clamp(2.6rem,9vw,4.2rem);
+  color:var(--gold);font-weight:700;line-height:1;
+}
+.commission p{color:var(--ink-dim);margin-top:10px}
+.commission .note{font-size:.85rem;margin-top:18px;color:var(--ink-dim)}
+
+/* BENEFITS */
+.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.benefit{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:20px;
+}
+.benefit .ico{font-size:1.4rem;flex-shrink:0}
+.benefit h4{font-size:.98rem;margin-bottom:4px}
+.benefit p{color:var(--ink-dim);font-size:.88rem}
+
+/* FAQ */
+.q{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.q button{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  background:none;border:none;color:var(--ink);cursor:pointer;
+  padding:20px 22px;font-size:1rem;font-weight:700;text-align:left;font-family:var(--font);
+}
+.q .plus{position:relative;width:18px;height:18px;flex-shrink:0}
+.q .plus::before,.q .plus::after{content:"";position:absolute;background:var(--gold);top:50%;left:50%;transform:translate(-50%,-50%)}
+.q .plus::before{width:12px;height:2px}
+.q .plus::after{width:2px;height:12px;transition:transform .3s}
+.q.open .plus::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.q .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.q .a p{padding:0 22px 20px;color:var(--ink-dim)}
+
+/* FINAL */
+.final{text-align:center;padding:70px 0 90px}
+
+footer{border-top:1px solid var(--line);padding:36px 24px;text-align:center;color:var(--ink-dim);font-size:.85rem}
+footer a{color:var(--gold)}
+
+@media(max-width:720px){
+  .steps{grid-template-columns:1fr}
+  .benefits{grid-template-columns:1fr}
+  .s{padding:48px 0}
+}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<!-- HERO -->
+<section class="hero wrap">
+  <div class="hero-badge">💰 Programa de Afiliados</div>
+  <h1>Gana dinero <em>recomendando</em> un producto que se vende solo</h1>
+  <p>Comparte tu enlace de afiliado, y cada vez que alguien compre a través de él, recibes tu comisión directo en tu cuenta. Sin inventario, sin atención al cliente, sin inversión.</p>
+  <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Quiero afiliarme gratis</a>
+  <span class="cta-sub">Registro 100% gratuito a través de Hotmart</span>
+</section>
+
+<!-- COMISIÓN -->
+<section class="s wrap">
+  <div class="commission">
+    <div class="big">50%</div>
+    <p>de comisión por cada venta que generes</p>
+    <p class="note">Hotmart te paga automáticamente. Tú solo compartes tu enlace.</p>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="s wrap">
+  <h2 class="section-title">¿Cómo funciona?</h2>
+  <p class="section-sub">En menos de 5 minutos puedes estar generando tu primer enlace.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Afíliate gratis</h3>
+      <p>Haz clic en el botón, crea tu cuenta gratuita en Hotmart y solicita tu afiliación al producto.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Comparte tu enlace</h3>
+      <p>Hotmart te da un enlace único. Compártelo en WhatsApp, redes sociales, o con tu audiencia.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Cobra tus comisiones</h3>
+      <p>Cada compra hecha con tu enlace te genera comisión automática. Hotmart te paga directo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="s wrap">
+  <h2 class="section-title">¿Por qué este producto?</h2>
+  <p class="section-sub">No todos los productos digitales convierten igual.</p>
+  <div class="benefits">
+    <div class="benefit">
+      <span class="ico">🔥</span>
+      <div><h4>Alta demanda</h4><p>Temática de nicho con público apasionado que busca activamente este contenido.</p></div>
+    </div>
+    <div class="benefit">
+      <span class="ico">💸</span>
+      <div><h4>Precio accesible</h4><p>Ticket bajo = decisión de compra rápida. Más ventas con menos esfuerzo.</p></div>
+    </div>
+    <div class="benefit">
+      <span class="ico">🤖</span>
+      <div><h4>Todo automatizado</h4><p>La página de ventas ya está optimizada. Tú solo traes el tráfico, ella convierte.</p></div>
+    </div>
+    <div class="benefit">
+      <span class="ico">🌎</span>
+      <div><h4>Cobra desde cualquier país</h4><p>Hotmart paga en tu moneda local por transferencia o métodos digitales.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s wrap">
+  <h2 class="section-title">Preguntas frecuentes</h2>
+  <p class="section-sub"></p>
+  <div class="q">
+    <button>¿Cuánto cuesta afiliarme?<span class="plus"></span></button>
+    <div class="a"><p>Nada. El registro en Hotmart y la afiliación al producto son 100% gratuitos.</p></div>
+  </div>
+  <div class="q">
+    <button>¿Necesito experiencia o seguidores?<span class="plus"></span></button>
+    <div class="a"><p>No. Puedes empezar compartiendo tu enlace por WhatsApp con conocidos, en grupos o en tus redes. Mientras más personas lo vean, más posibilidades de venta.</p></div>
+  </div>
+  <div class="q">
+    <button>¿Cómo y cuándo me pagan?<span class="plus"></span></button>
+    <div class="a"><p>Hotmart acumula tus comisiones y las libera automáticamente según su período de garantía. Puedes retirarlas a tu cuenta bancaria o billetera digital.</p></div>
+  </div>
+  <div class="q">
+    <button>¿Cómo sé cuántas ventas llevo?<span class="plus"></span></button>
+    <div class="a"><p>En tu panel de Hotmart ves en tiempo real los clics, las ventas y las comisiones generadas con tu enlace.</p></div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final wrap">
+  <h2 class="section-title">Empieza a ganar hoy mismo</h2>
+  <p class="section-sub">Tu enlace de afiliado te espera. El registro toma menos de 5 minutos.</p>
+  <a class="cta" href="https://affiliate.hotmart.com/affiliate-recruiting/view/3518E106104488" target="_blank" rel="noopener">Afiliarme gratis ahora</a>
+</section>
+
+<footer>
+  <p><a href="index.html">← Volver a la página principal</a></p>
+  <p style="margin-top:8px">Copyright © · Todos los derechos reservados.</p>
+</footer>
+
+<script>
+document.querySelectorAll('.q button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var q = btn.parentElement;
+    var a = q.querySelector('.a');
+    var open = q.classList.toggle('open');
+    a.style.maxHeight = open ? a.scrollHeight + 'px' : 0;
+  });
+});
+</script>
+</body>
+</html>
