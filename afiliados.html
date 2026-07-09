@@ -357,15 +357,16 @@ footer a{color:var(--gold)}
   <div class="calc">
     <h3>Calculadora de comisiones</h3>
     <p class="calc-sub">Basada en el precio del libro principal (USD $9,90 → tu parte: $4,95 por venta)</p>
-    <label for="ventasRange">Ventas por semana</label>
-    <input type="range" id="ventasRange" min="1" max="100" value="10">
-    <div class="ventas-num"><span id="ventasNum">10</span> ventas/semana</div>
+    <style>.calc-avg{text-align:center;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.3);border-radius:12px;padding:14px 16px;margin-top:16px;font-size:.88rem;color:var(--ink-dim)}.calc-avg b{color:#4ade80}</style>
+    <label for="ventasRange">Ventas por día</label>
+    <input type="range" id="ventasRange" min="1" max="200" value="20">
+    <div class="ventas-num"><span id="ventasNum">20</span> ventas/día</div>
     <div class="resultado">
       <div class="label">Ganarías al mes aprox.</div>
-      <div class="monto" id="montoMes">$198 USD</div>
-      <div class="peso" id="montoPeso">≈ $792.000 pesos colombianos</div>
+      <div class="monto" id="montoMes">$2.970 USD</div>
     </div>
-    <p class="disclaimer">*Cálculo ilustrativo solo con el libro principal. No incluye los 3 productos adicionales del checkout, que aumentan la comisión por compra. Los resultados dependen de tu constancia.</p>
+    <div class="calc-avg">📊 Nuestros afiliados activos promedian <b>entre $600 y $1.500 USD al mes</b> — los más constantes superan los $3.000.</div>
+    <p class="disclaimer">*Cálculo ilustrativo solo con el libro principal. No incluye los 3 productos adicionales del checkout, que aumentan la comisión por compra. Los resultados dependen de tu constancia y creatividad.</p>
   </div>
 </section>
 
@@ -520,16 +521,13 @@ document.querySelectorAll('.q button').forEach(function(btn){
   var range = document.getElementById('ventasRange');
   var num = document.getElementById('ventasNum');
   var mes = document.getElementById('montoMes');
-  var peso = document.getElementById('montoPeso');
   var COMISION = 4.95;   /* 50% de $9,90 */
-  var TRM = 4000;        /* aprox COP por USD */
   function update(){
     var v = parseInt(range.value, 10);
     num.textContent = v;
-    var usd = Math.round(v * COMISION * 4.33);
+    var usd = Math.round(v * COMISION * 30); /* ventas/día × comisión × 30 días */
     mes.textContent = '$' + usd.toLocaleString('en-US') + ' USD';
-    peso.textContent = '≈ $' + (usd * TRM).toLocaleString('es-CO') + ' pesos colombianos';
-    range.style.setProperty('--fill', (v / 100 * 100) + '%');
+    range.style.setProperty('--fill', ((v - 1) / 199 * 100) + '%');
   }
   range.addEventListener('input', update);
   update();
