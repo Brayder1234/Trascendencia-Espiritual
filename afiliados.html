@@ -222,8 +222,28 @@ a{color:inherit;text-decoration:none}
   background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.35);
   border-radius:14px;padding:18px 22px;max-width:250px;text-align:left;
 }
-.community .group h4{font-size:.95rem;color:#4ade80;margin-bottom:4px}
+.community .group h4{font-size:.95rem;color:#4ade80;margin-bottom:4px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .community .group p{font-size:.85rem}
+.community .group{display:flex;flex-direction:column}
+.group-badge{
+  display:inline-block;background:rgba(224,30,30,.15);border:1px solid rgba(224,30,30,.45);
+  color:#ff6b6b;font-size:.62rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:50px;padding:2px 9px;
+}
+.group-warning{
+  font-size:.78rem;color:#ff8a8a;margin-top:10px;font-weight:700;
+  background:rgba(224,30,30,.08);border:1px solid rgba(224,30,30,.25);
+  border-radius:10px;padding:9px 12px;line-height:1.4;
+}
+.wa-group-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--green);color:#000;font-weight:900;font-size:.85rem;
+  border-radius:50px;padding:11px 20px;margin-top:14px;
+  transition:transform .2s ease,box-shadow .2s ease;
+  box-shadow:0 4px 16px rgba(37,211,102,.35);
+}
+.wa-group-btn:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(37,211,102,.55)}
+.wa-group-btn svg{width:18px;height:18px;fill:#000}
 
 /* FAQ */
 .q{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
@@ -409,12 +429,21 @@ footer a{color:var(--gold)}
     <p>Entras a un equipo que ya está vendiendo. Dos grupos de WhatsApp para que avances rápido:</p>
     <div class="groups">
       <div class="group">
-        <h4>Grupo de Trabajo</h4>
+        <h4>Grupo de Trabajo <span class="group-badge">🔒 Privado</span></h4>
         <p>Donde los afiliados activos compartimos avances y estrategias que están funcionando.</p>
+        <div class="group-warning">⚠️ Grupo exclusivo para afiliados. <b>Solo envía la solicitud de ingreso si ya estás afiliado</b>; de lo contrario será rechazada.</div>
+        <a class="wa-group-btn" href="https://chat.whatsapp.com/BSZo72U8KgjCt9MZYnMZwD?mode=gi_t" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.847L.057 23.57a.5.5 0 0 0 .615.612l5.857-1.535A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.878 9.878 0 0 1-5.031-1.374l-.361-.214-3.741.981.998-3.648-.235-.374A9.87 9.87 0 0 1 2.1 12C2.1 6.534 6.534 2.1 12 2.1c5.466 0 9.9 4.434 9.9 9.9 0 5.466-4.434 9.9-9.9 9.9z"/></svg>
+          Entrar (solo afiliados)
+        </a>
       </div>
       <div class="group">
         <h4>Grupo Filtro</h4>
-        <p>¿Dudas para empezar? Escribe y te guiamos paso a paso, sin enredos.</p>
+        <p>¿Dudas para empezar? Escribe y te guiamos paso a paso, sin enredos. Abierto para todos.</p>
+        <a class="wa-group-btn" href="https://chat.whatsapp.com/FiIzmAVi40E6GXRhRStoFw?mode=gi_t" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.847L.057 23.57a.5.5 0 0 0 .615.612l5.857-1.535A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.878 9.878 0 0 1-5.031-1.374l-.361-.214-3.741.981.998-3.648-.235-.374A9.87 9.87 0 0 1 2.1 12C2.1 6.534 6.534 2.1 12 2.1c5.466 0 9.9 4.434 9.9 9.9 0 5.466-4.434 9.9-9.9 9.9z"/></svg>
+          Escribir al Grupo Filtro
+        </a>
       </div>
     </div>
   </div>
