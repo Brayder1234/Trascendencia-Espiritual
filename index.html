@@ -373,13 +373,15 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
 @media(max-width:640px){.access-steps{grid-template-columns:1fr}}
 
 /* ---------- Precio en moneda local ---------- */
-.local-price{
-  display:block;margin-top:6px;font-size:.9rem;font-weight:700;
-  color:var(--gold-2);letter-spacing:.01em;
+.now .cur-code{
+  font-family:var(--font);font-size:.32em;font-weight:900;
+  color:var(--ink-dim);letter-spacing:.06em;margin-left:8px;vertical-align:middle;
 }
-.local-price .lp-flag{margin-right:5px}
-.local-price .lp-usd{color:var(--ink-dim);font-weight:400}
-.local-price.hidden{display:none}
+.usd-ref{
+  display:block;margin-top:10px;font-size:.85rem;font-weight:400;
+  color:var(--ink-dim);letter-spacing:.01em;text-align:center;width:100%;
+}
+.usd-ref.hidden{display:none}
 .local-badge{
   display:inline-flex;align-items:center;gap:7px;
   background:rgba(245,208,96,.08);border:1px solid rgba(245,208,96,.3);
@@ -501,15 +503,16 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   </div>
 
   <div class="price-row reveal">
-    <span class="before">Antes $51</span>
-    <span class="now"><small>Accede ahora por</small><b>$9,90</b><span class="local-price hidden" data-usd="9.90"></span></span>
+    <span class="before price-before" data-usd="51">Antes $51</span>
+    <span class="now"><small>Accede ahora por</small><b class="price-main" data-usd="9.90">$9,90</b></span>
+    <span class="usd-ref hidden"></span>
   </div>
 
   <div style="margin-top:20px" class="reveal">
-    <a class="cta cta-wide" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">SÍ, QUIERO TODO POR $9,90 →</a>
+    <a class="cta cta-wide" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51" data-cta-usd="9.90">SÍ, QUIERO TODO POR $9,90 →</a>
     <div class="guarantee-mini" style="margin-top:10px">🔒 Pago 100% seguro · Garantía 7 días · Acceso instantáneo</div>
     <div class="hero-urgency" style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(224,30,30,.1);border:1px solid rgba(224,30,30,.35);border-radius:50px;padding:8px 20px;font-size:.82rem;font-weight:900;color:var(--gold-2)">
-      ⏳ La oferta de $9,90 termina en <span id="cdHero" style="color:#ff6b6b;font-variant-numeric:tabular-nums">--:--:--</span>
+      ⏳ La oferta <span class="cd-price">de $9,90</span> termina en <span id="cdHero" style="color:#ff6b6b;font-variant-numeric:tabular-nums">--:--:--</span>
     </div>
     <div class="scarcity">
       <div class="sc-label">🔥 Quedan <b><span class="slotsNum">--</span> de 50</b> accesos al precio de hoy</div>
@@ -518,9 +521,6 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     <div class="paytrust">
       <span class="pt">VISA</span><span class="pt">Mastercard</span><span class="pt">AMEX</span><span class="pt">PayPal</span>
       <span>· Compra protegida por Hotmart</span>
-    </div>
-    <div class="local-badge hidden" id="localBadge">
-      <span id="lbText"></span><span class="lb-rate" id="lbRate"></span>
     </div>
   </div>
 </section>
@@ -684,8 +684,8 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
       <div class="total"><span>Valor total del paquete</span><b>$51</b></div>
       <div class="final">
         <small>Pero hoy puedes obtener todo por</small>
-        <b>$9,90</b>
-        <span class="local-price hidden" data-usd="9.90"></span>
+        <b class="price-main" data-usd="9.90">$9,90</b>
+        <span class="usd-ref hidden"></span>
         <div style="margin-top:20px">
           <a class="cta cta-wide" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">Desbloquear conocimiento →</a>
         </div>
@@ -928,8 +928,9 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
            style="width:100%;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.65);display:block;">
     </div>
     <div class="price-row reveal">
-      <span class="before">Antes $51</span>
-      <span class="now"><small>Hoy solo</small><b>$9,90</b><span class="local-price hidden" data-usd="9.90"></span></span>
+      <span class="before price-before" data-usd="51">Antes $51</span>
+      <span class="now"><small>Hoy solo</small><b class="price-main" data-usd="9.90">$9,90</b></span>
+      <span class="usd-ref hidden"></span>
     </div>
     <div class="countdown reveal" id="countdown2">
       <div class="cd-box"><b id="cd-h2">00</b><small>Horas</small></div>
@@ -1116,25 +1117,33 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     var rate = tasas.rates[info.cur];
     if(!rate) return;
 
-    document.querySelectorAll('.local-price').forEach(function(el){
+    /* Precio grande en moneda local */
+    document.querySelectorAll('.price-main').forEach(function(el){
       var usd = parseFloat(el.dataset.usd);
       var local = usd * rate;
-      el.innerHTML = '<span class="lp-flag">'+info.flag+'</span>' +
-                     info.sym + fmt(local, info.dec) + ' ' + info.cur +
-                     ' <span class="lp-usd">≈ $'+usd.toFixed(2)+' USD</span>';
+      el.innerHTML = info.sym + ' ' + fmt(local, info.dec) +
+                     '<span class="cur-code">' + info.cur + '</span>';
+    });
+    /* Precio tachado en moneda local */
+    document.querySelectorAll('.price-before').forEach(function(el){
+      var usd = parseFloat(el.dataset.usd);
+      el.textContent = 'Antes ' + info.sym + ' ' + fmt(usd * rate, info.dec);
+    });
+    /* Botones CTA con precio local */
+    document.querySelectorAll('[data-cta-usd]').forEach(function(el){
+      var usd = parseFloat(el.dataset.ctaUsd);
+      el.textContent = 'SÍ, QUIERO TODO POR ' + info.sym + ' ' + fmt(usd * rate, info.dec) + ' →';
+    });
+    /* Countdown */
+    document.querySelectorAll('.cd-price').forEach(function(el){
+      el.textContent = 'de ' + info.sym + ' ' + fmt(9.90 * rate, info.dec);
+    });
+    /* Referencia en USD debajo */
+    document.querySelectorAll('.usd-ref').forEach(function(el){
+      el.textContent = '≈ USD 9,90 · el cobro se realiza en dólares';
       el.classList.remove('hidden');
     });
 
-    var badge = document.getElementById('localBadge');
-    if(badge){
-      var precioLocal = info.sym + fmt(9.90*rate, info.dec) + ' ' + info.cur;
-      document.getElementById('lbText').innerHTML =
-        info.flag + ' Precio en ' + info.name + ': <b>' + precioLocal + '</b>';
-      var d = new Date(tasas.ts);
-      document.getElementById('lbRate').textContent =
-        '· Tasa actualizada ' + d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
-      badge.classList.remove('hidden');
-    }
   }
 
   function init(){
