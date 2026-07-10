@@ -1261,73 +1261,16 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   })(5000);
 })();
 
-/* ---- Viewers counter (REAL vía Firebase, con fallback simulado) ---- */
-/* Config: pega aquí los datos de tu proyecto Firebase.
-   Mientras esté vacío, la página usa el contador simulado automáticamente. */
-window.FIREBASE_CONFIG = {
-  apiKey: "",
-  databaseURL: "",
-  projectId: ""
-};
-
+/* ---- Viewers counter ---- */
 (function(){
-  var el = document.getElementById('viewers');
-  if(!el) return;
-
-  var simulado = null;
-  function arrancarSimulado(){
-    if(simulado) return;
-    var current = Math.floor(Math.random()*61)+95;
-    el.textContent = current;
-    simulado = setInterval(function(){
-      var delta = Math.floor(Math.random()*7)-3;
-      current = Math.min(180, Math.max(60, current+delta));
-      el.textContent = current;
-    }, 9000);
-  }
-  function detenerSimulado(){
-    if(simulado){ clearInterval(simulado); simulado = null; }
-  }
-
-  var cfg = window.FIREBASE_CONFIG;
-  if(!cfg || !cfg.databaseURL){ arrancarSimulado(); return; }
-
-  /* Mientras conecta, muestra el simulado para no dejar el hueco vacío */
-  arrancarSimulado();
-
-  var timeout = setTimeout(function(){ /* si Firebase tarda >6s, se queda el simulado */ }, 6000);
-
-  import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js').then(function(appMod){
-    return import('https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js').then(function(dbMod){
-      var app = appMod.initializeApp(cfg);
-      var db  = dbMod.getDatabase(app);
-
-      var id  = Math.random().toString(36).slice(2) + Date.now().toString(36);
-      var mio = dbMod.ref(db, 'presence/' + id);
-      var sala = dbMod.ref(db, 'presence');
-
-      /* Se borra solo al cerrar la pestaña o perder conexión */
-      dbMod.onDisconnect(mio).remove();
-      dbMod.set(mio, { t: Date.now() });
-
-      /* Latido cada 30s: mantiene viva la sesión */
-      setInterval(function(){ dbMod.set(mio, { t: Date.now() }); }, 30000);
-
-      /* Lee el total en vivo, descartando sesiones muertas (>90s sin latido) */
-      dbMod.onValue(sala, function(snap){
-        clearTimeout(timeout);
-        detenerSimulado();
-        var ahora = Date.now(), vivos = 0;
-        snap.forEach(function(child){
-          var v = child.val();
-          if(v && v.t && (ahora - v.t) < 90000) vivos++;
-        });
-        el.textContent = Math.max(1, vivos);
-      });
-
-      window.addEventListener('pagehide', function(){ dbMod.remove(mio); });
-    });
-  }).catch(function(){ /* sin red o Firebase caído → se queda el simulado */ });
+  var el=document.getElementById('viewers');
+  var current=Math.floor(Math.random()*61)+95; /* arranca entre 95 y 155 */
+  el.textContent=current;
+  setInterval(function(){
+    var delta=Math.floor(Math.random()*7)-3; /* -3 a +3 */
+    current=Math.min(180,Math.max(60,current+delta));
+    el.textContent=current;
+  },9000);
 })();
 
 /* ---- Staggered reveal ---- */
