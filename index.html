@@ -372,6 +372,23 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
 }
 @media(max-width:640px){.access-steps{grid-template-columns:1fr}}
 
+/* ---------- Precio en moneda local ---------- */
+.local-price{
+  display:block;margin-top:6px;font-size:.9rem;font-weight:700;
+  color:var(--gold-2);letter-spacing:.01em;
+}
+.local-price .lp-flag{margin-right:5px}
+.local-price .lp-usd{color:var(--ink-dim);font-weight:400}
+.local-price.hidden{display:none}
+.local-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(245,208,96,.08);border:1px solid rgba(245,208,96,.3);
+  border-radius:50px;padding:6px 16px;margin-top:14px;
+  font-size:.8rem;font-weight:700;color:var(--gold-2);
+}
+.local-badge.hidden{display:none}
+.local-badge .lb-rate{color:var(--ink-dim);font-weight:400;font-size:.72rem}
+
 /* ---------- Exit intent modal ---------- */
 .exit-overlay{
   position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);
@@ -485,7 +502,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 
   <div class="price-row reveal">
     <span class="before">Antes $51</span>
-    <span class="now"><small>Accede ahora por</small><b>$9,90</b></span>
+    <span class="now"><small>Accede ahora por</small><b>$9,90</b><span class="local-price hidden" data-usd="9.90"></span></span>
   </div>
 
   <div style="margin-top:20px" class="reveal">
@@ -501,6 +518,9 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     <div class="paytrust">
       <span class="pt">VISA</span><span class="pt">Mastercard</span><span class="pt">AMEX</span><span class="pt">PayPal</span>
       <span>· Compra protegida por Hotmart</span>
+    </div>
+    <div class="local-badge hidden" id="localBadge">
+      <span id="lbText"></span><span class="lb-rate" id="lbRate"></span>
     </div>
   </div>
 </section>
@@ -665,6 +685,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
       <div class="final">
         <small>Pero hoy puedes obtener todo por</small>
         <b>$9,90</b>
+        <span class="local-price hidden" data-usd="9.90"></span>
         <div style="margin-top:20px">
           <a class="cta cta-wide" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">Desbloquear conocimiento →</a>
         </div>
@@ -908,7 +929,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     </div>
     <div class="price-row reveal">
       <span class="before">Antes $51</span>
-      <span class="now"><small>Hoy solo</small><b>$9,90</b></span>
+      <span class="now"><small>Hoy solo</small><b>$9,90</b><span class="local-price hidden" data-usd="9.90"></span></span>
     </div>
     <div class="countdown reveal" id="countdown2">
       <div class="cd-box"><b id="cd-h2">00</b><small>Horas</small></div>
@@ -1010,6 +1031,130 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     if(d<=0){localStorage.removeItem(KEY);}
   }
   tick(); setInterval(tick,1000);
+})();
+
+/* ---- Precio en moneda local (detección silenciosa + tasas cada 2h) ---- */
+(function(){
+  var PAISES = {
+    MX:{cur:'MXN',sym:'$',name:'México',flag:'🇲🇽',dec:0},
+    CO:{cur:'COP',sym:'$',name:'Colombia',flag:'🇨🇴',dec:0},
+    AR:{cur:'ARS',sym:'$',name:'Argentina',flag:'🇦🇷',dec:0},
+    PE:{cur:'PEN',sym:'S/',name:'Perú',flag:'🇵🇪',dec:2},
+    CL:{cur:'CLP',sym:'$',name:'Chile',flag:'🇨🇱',dec:0},
+    VE:{cur:'VES',sym:'Bs.',name:'Venezuela',flag:'🇻🇪',dec:2},
+    GT:{cur:'GTQ',sym:'Q',name:'Guatemala',flag:'🇬🇹',dec:2},
+    BO:{cur:'BOB',sym:'Bs',name:'Bolivia',flag:'🇧🇴',dec:2},
+    DO:{cur:'DOP',sym:'RD$',name:'Rep. Dominicana',flag:'🇩🇴',dec:0},
+    HN:{cur:'HNL',sym:'L',name:'Honduras',flag:'🇭🇳',dec:2},
+    PY:{cur:'PYG',sym:'₲',name:'Paraguay',flag:'🇵🇾',dec:0},
+    NI:{cur:'NIO',sym:'C$',name:'Nicaragua',flag:'🇳🇮',dec:2},
+    CR:{cur:'CRC',sym:'₡',name:'Costa Rica',flag:'🇨🇷',dec:0},
+    UY:{cur:'UYU',sym:'$U',name:'Uruguay',flag:'🇺🇾',dec:0},
+    CU:{cur:'CUP',sym:'$',name:'Cuba',flag:'🇨🇺',dec:2},
+    ES:{cur:'EUR',sym:'€',name:'España',flag:'🇪🇸',dec:2},
+    GQ:{cur:'XAF',sym:'FCFA',name:'Guinea Ecuatorial',flag:'🇬🇶',dec:0}
+    /* Ecuador, El Salvador, Panamá y Puerto Rico usan USD → sin conversión */
+  };
+
+  /* Zona horaria → país (instantáneo, sin red ni permisos) */
+  var TZ = {
+    'America/Mexico_City':'MX','America/Cancun':'MX','America/Monterrey':'MX','America/Tijuana':'MX','America/Merida':'MX','America/Chihuahua':'MX','America/Hermosillo':'MX','America/Mazatlan':'MX',
+    'America/Bogota':'CO',
+    'America/Argentina/Buenos_Aires':'AR','America/Argentina/Cordoba':'AR','America/Argentina/Mendoza':'AR','America/Argentina/Salta':'AR','America/Argentina/Tucuman':'AR',
+    'America/Lima':'PE',
+    'America/Santiago':'CL','Pacific/Easter':'CL',
+    'America/Caracas':'VE',
+    'America/Guatemala':'GT',
+    'America/La_Paz':'BO',
+    'America/Santo_Domingo':'DO',
+    'America/Tegucigalpa':'HN',
+    'America/Asuncion':'PY',
+    'America/Managua':'NI',
+    'America/Costa_Rica':'CR',
+    'America/Montevideo':'UY',
+    'America/Havana':'CU',
+    'Europe/Madrid':'ES','Africa/Ceuta':'ES','Atlantic/Canary':'ES',
+    'Africa/Malabo':'GQ'
+  };
+
+  var RATE_KEY='ckp_rates', CC_KEY='ckp_cc', TTL=2*60*60*1000; /* 2 horas */
+
+  function detectarPais(){
+    try{
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if(TZ[tz]) return Promise.resolve(TZ[tz]);
+    }catch(e){}
+    /* Fallback silencioso por IP (sin permisos) */
+    return fetch('https://ipwho.is/?fields=country_code')
+      .then(function(r){ return r.json(); })
+      .then(function(d){ return d.country_code || null; })
+      .catch(function(){ return null; });
+  }
+
+  function obtenerTasas(){
+    var c = null;
+    try{ c = JSON.parse(localStorage.getItem(RATE_KEY)||'null'); }catch(e){}
+    if(c && c.ts && (Date.now()-c.ts) < TTL && c.rates) return Promise.resolve(c);
+    return fetch('https://open.er-api.com/v6/latest/USD')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.rates) throw 0;
+        var obj = {ts:Date.now(), rates:d.rates};
+        try{ localStorage.setItem(RATE_KEY, JSON.stringify(obj)); }catch(e){}
+        return obj;
+      })
+      .catch(function(){ return c || null; }); /* si falla, usa caché vieja */
+  }
+
+  function fmt(n, dec){
+    return n.toLocaleString('es', {minimumFractionDigits:dec, maximumFractionDigits:dec});
+  }
+
+  function pintar(pais, tasas){
+    var info = PAISES[pais];
+    if(!info || !tasas || !tasas.rates) return;
+    var rate = tasas.rates[info.cur];
+    if(!rate) return;
+
+    document.querySelectorAll('.local-price').forEach(function(el){
+      var usd = parseFloat(el.dataset.usd);
+      var local = usd * rate;
+      el.innerHTML = '<span class="lp-flag">'+info.flag+'</span>' +
+                     info.sym + fmt(local, info.dec) + ' ' + info.cur +
+                     ' <span class="lp-usd">≈ $'+usd.toFixed(2)+' USD</span>';
+      el.classList.remove('hidden');
+    });
+
+    var badge = document.getElementById('localBadge');
+    if(badge){
+      var precioLocal = info.sym + fmt(9.90*rate, info.dec) + ' ' + info.cur;
+      document.getElementById('lbText').innerHTML =
+        info.flag + ' Precio en ' + info.name + ': <b>' + precioLocal + '</b>';
+      var d = new Date(tasas.ts);
+      document.getElementById('lbRate').textContent =
+        '· Tasa actualizada ' + d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+      badge.classList.remove('hidden');
+    }
+  }
+
+  function init(){
+    var cached = null;
+    try{ cached = JSON.parse(localStorage.getItem(CC_KEY)||'null'); }catch(e){}
+    var paisPromise = (cached && cached.cc && (Date.now()-cached.ts) < TTL)
+      ? Promise.resolve(cached.cc)
+      : detectarPais().then(function(cc){
+          if(cc){ try{ localStorage.setItem(CC_KEY, JSON.stringify({cc:cc, ts:Date.now()})); }catch(e){} }
+          return cc;
+        });
+
+    Promise.all([paisPromise, obtenerTasas()]).then(function(res){
+      if(res[0] && res[1]) pintar(res[0], res[1]);
+    }).catch(function(){});
+  }
+
+  init();
+  /* Refresca tasas cada 2h si el visitante deja la pestaña abierta */
+  setInterval(function(){ try{ localStorage.removeItem(RATE_KEY); }catch(e){} init(); }, TTL);
 })();
 
 /* ---- Scarcity slots (sincronizado con notificaciones de compra) ---- */
