@@ -373,9 +373,9 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
 @media(max-width:640px){.access-steps{grid-template-columns:1fr}}
 
 /* ---------- Precio en moneda local ---------- */
-.now .cur-code{
-  font-family:var(--font);font-size:.32em;font-weight:900;
-  color:var(--ink-dim);letter-spacing:.06em;margin-left:8px;vertical-align:middle;
+.cur-code{
+  font-family:var(--font);font-size:.3em;font-weight:900;
+  color:var(--ink-dim);letter-spacing:.06em;margin-left:10px;vertical-align:middle;
 }
 .usd-ref{
   display:block;margin-top:10px;font-size:.85rem;font-weight:400;
@@ -648,19 +648,19 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
         <span class="tag">Bonus #1</span>
         <div class="cover"><img src="assets/guiarealidad.png" alt="Guía Definitiva para la Creación de la Realidad" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"></div>
         <h3>Guía Definitiva para la Creación de la Realidad</h3>
-        <div class="pricing"><s>$15</s><b>Gratis</b></div>
+        <div class="pricing"><s data-p="15">$15</s><b>Gratis</b></div>
       </div>
       <div class="bonus reveal">
         <span class="tag">Bonus #2</span>
         <div class="cover"><img src="assets/domemociones.png" alt="El Dominio de las Emociones" style="width:100%;height:auto;object-fit:contain;border-radius:10px;display:block;"></div>
         <h3>El Dominio de las Emociones</h3>
-        <div class="pricing"><s>$12</s><b>Gratis</b></div>
+        <div class="pricing"><s data-p="12">$12</s><b>Gratis</b></div>
       </div>
       <div class="bonus reveal">
         <span class="tag">Bonus #3</span>
         <div class="cover"><img src="assets/ldenoc.png" alt="El Libro de Enoc" style="width:100%;height:auto;object-fit:contain;border-radius:10px;display:block;"></div>
         <h3>El Libro de Enoc <small>(Canon de la Biblia)</small></h3>
-        <div class="pricing"><s>$9</s><b>Gratis</b></div>
+        <div class="pricing"><s data-p="9">$9</s><b>Gratis</b></div>
       </div>
     </div>
     <div style="text-align:center" class="reveal">
@@ -677,11 +677,11 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     <h2 class="reveal">Valor total de lo que recibirás hoy</h2>
     <div style="height:38px"></div>
     <div class="value reveal">
-      <div class="row"><span>El Conocimiento Prohibido</span><b>$15</b></div>
-      <div class="row"><span>Guía Creación de la Realidad</span><b>$15</b></div>
-      <div class="row"><span>El Dominio de las Emociones</span><b>$12</b></div>
-      <div class="row"><span>Libro de Enoc</span><b>$9</b></div>
-      <div class="total"><span>Valor total del paquete</span><b>$51</b></div>
+      <div class="row"><span>El Conocimiento Prohibido</span><b data-p="15">$15</b></div>
+      <div class="row"><span>Guía Creación de la Realidad</span><b data-p="15">$15</b></div>
+      <div class="row"><span>El Dominio de las Emociones</span><b data-p="12">$12</b></div>
+      <div class="row"><span>Libro de Enoc</span><b data-p="9">$9</b></div>
+      <div class="total"><span>Valor total del paquete</span><b data-p="51">$51</b></div>
       <div class="final">
         <small>Pero hoy puedes obtener todo por</small>
         <b class="price-main" data-usd="9.90">$9,90</b>
@@ -714,7 +714,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 
       <div class="t-card">
         <div class="t-stars">★★★★★</div>
-        <p>"Tenía miedo de que fuera una estafa. Pagué los $9,90 con desconfianza total. En menos de 2 minutos ya tenía acceso, los 3 bonos incluidos y todo perfectamente organizado. El contenido superó mis expectativas por lejos. Es de esas compras que desearías haber hecho antes."</p>
+        <p>"Tenía miedo de que fuera una estafa. Pagué los <span data-p="9.90">$9,90</span> con desconfianza total. En menos de 2 minutos ya tenía acceso, los 3 bonos incluidos y todo perfectamente organizado. El contenido superó mis expectativas por lejos. Es de esas compras que desearías haber hecho antes."</p>
         <div class="t-who"><div class="t-av">L</div><div><b>Laura P.</b><small>✔ Compra verificada · México</small></div></div>
       </div>
 
@@ -726,7 +726,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 
       <div class="t-card">
         <div class="t-stars">★★★★★</div>
-        <p>"Me pregunté si $9,90 podía comprar algo de calidad real. La respuesta es sí. El acceso fue instantáneo, los PDF están bien diseñados, el contenido es profundo y los bonos son un regalo adicional. No entiendo por qué no cuesta más. Compra sin pensarlo dos veces."</p>
+        <p>"Me pregunté si <span data-p="9.90">$9,90</span> podía comprar algo de calidad real. La respuesta es sí. El acceso fue instantáneo, los PDF están bien diseñados, el contenido es profundo y los bonos son un regalo adicional. No entiendo por qué no cuesta más. Compra sin pensarlo dos veces."</p>
         <div class="t-who"><div class="t-av">S</div><div><b>Sofía R.</b><small>✔ Compra verificada · España</small></div></div>
       </div>
 
@@ -964,7 +964,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
       <div class="q reveal"><button>¿Es un pago seguro?<span class="plus"></span></button><div class="a"><p>Sí. Hotmart utiliza plataformas de pago seguras y certificadas para proteger tu compra.</p></div></div>
       <div class="q reveal"><button>¿Puedo leerlo desde el celular?<span class="plus"></span></button><div class="a"><p>Sí, puedes acceder desde celular, tablet o computador, las veces que quieras.</p></div></div>
       <div class="q reveal"><button>¿Cómo sé que no es una estafa?<span class="plus"></span></button><div class="a"><p>La compra se procesa por Hotmart, una de las plataformas de productos digitales más grandes de Latinoamérica. Ellos custodian tu pago y garantizan la entrega. Además tienes 7 días de garantía: si no te convence, Hotmart te devuelve el 100% de tu dinero.</p></div></div>
-      <div class="q reveal"><button>¿Por qué cuesta tan poco si vale $51?<span class="plus"></span></button><div class="a"><p>Porque es una oferta de lanzamiento por tiempo limitado. Al ser 100% digital no hay costos de impresión ni envío, y preferimos que miles de personas accedan al conocimiento a ponerle un precio que lo vuelva inalcanzable.</p></div></div>
+      <div class="q reveal"><button>¿Por qué cuesta tan poco si vale <span data-p="51">$51</span>?<span class="plus"></span></button><div class="a"><p>Porque es una oferta de lanzamiento por tiempo limitado. Al ser 100% digital no hay costos de impresión ni envío, y preferimos que miles de personas accedan al conocimiento a ponerle un precio que lo vuelva inalcanzable.</p></div></div>
       <div class="q reveal"><button>¿Y si lo compro y no me gusta?<span class="plus"></span></button><div class="a"><p>Pides la devolución dentro de los 7 días directamente en Hotmart y recibes el 100% de tu dinero de vuelta. Sin preguntas, sin trámites eternos. El riesgo completo lo asumimos nosotros.</p></div></div>
       <div class="q reveal"><button>¿Los 3 bonos de verdad vienen incluidos?<span class="plus"></span></button><div class="a"><p>Sí. Al completar tu compra recibes acceso inmediato al libro principal y a los 3 bonos: la Guía de Creación de la Realidad, El Dominio de las Emociones y El Libro de Enoc. Todo en el mismo acceso.</p></div></div>
     </div>
@@ -991,10 +991,10 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   <div class="exit-modal">
     <button class="exit-close" id="exitClose">✕</button>
     <div class="em-icon">⚠️</div>
-    <h3>Espera — tu acceso de <span>$9,90 se pierde</span> al salir</h3>
-    <p>El pack completo vale <b>$51</b>. Hoy te llevas el libro + los 3 bonos por menos de lo que cuesta una pizza. Con <b>garantía de 7 días</b>: si no te gusta, te devolvemos todo.</p>
-    <a class="cta" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">Quiero mi acceso por $9,90 →</a>
-    <button class="nothanks" id="exitNo">No gracias, prefiero pagar $51 después</button>
+    <h3>Espera — tu acceso de <span><span data-p="9.90">$9,90</span> se pierde</span> al salir</h3>
+    <p>El pack completo vale <b data-p="51">$51</b>. Hoy te llevas el libro + los 3 bonos por menos de lo que cuesta una pizza. Con <b>garantía de 7 días</b>: si no te gusta, te devolvemos todo.</p>
+    <a class="cta" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51" data-cta-usd="9.90">Quiero mi acceso por $9,90 →</a>
+    <button class="nothanks" id="exitNo">No gracias, prefiero pagar <span data-p="51">$51</span> después</button>
   </div>
 </div>
 
@@ -1009,7 +1009,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
 
 <!-- STICKY BAR -->
 <div class="sticky" id="sticky">
-  <div class="info"><s>Antes $51</s><b>$9,90</b></div>
+  <div class="info"><s data-p="51">Antes $51</s><b data-p="9.90">$9,90</b></div>
   <a class="cta" href="https://pay.hotmart.com/Q106104467Y?checkoutMode=10&hotfeature=51">Obtener acceso →</a>
 </div>
 
@@ -1108,8 +1108,10 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   }
 
   function fmt(n, dec){
-    return n.toLocaleString('es', {minimumFractionDigits:dec, maximumFractionDigits:dec});
+    return n.toLocaleString('es-ES', {minimumFractionDigits:dec, maximumFractionDigits:dec, useGrouping:true});
   }
+
+  var RE_PRECIO = /\$\s?[\d.,]+/;
 
   function pintar(pais, tasas){
     var info = PAISES[pais];
@@ -1117,33 +1119,41 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     var rate = tasas.rates[info.cur];
     if(!rate) return;
 
-    /* Precio grande en moneda local */
+    function local(usd){ return info.sym + ' ' + fmt(usd * rate, info.dec); }
+
+    /* Precio principal grande + código de moneda */
     document.querySelectorAll('.price-main').forEach(function(el){
-      var usd = parseFloat(el.dataset.usd);
-      var local = usd * rate;
-      el.innerHTML = info.sym + ' ' + fmt(local, info.dec) +
+      el.innerHTML = local(parseFloat(el.dataset.usd)) +
                      '<span class="cur-code">' + info.cur + '</span>';
     });
-    /* Precio tachado en moneda local */
+
+    /* Precio tachado del hero / CTA final */
     document.querySelectorAll('.price-before').forEach(function(el){
-      var usd = parseFloat(el.dataset.usd);
-      el.textContent = 'Antes ' + info.sym + ' ' + fmt(usd * rate, info.dec);
+      el.textContent = 'Antes ' + local(parseFloat(el.dataset.usd));
     });
-    /* Botones CTA con precio local */
+
+    /* Botones CTA — conserva el texto, cambia el número */
     document.querySelectorAll('[data-cta-usd]').forEach(function(el){
-      var usd = parseFloat(el.dataset.ctaUsd);
-      el.textContent = 'SÍ, QUIERO TODO POR ' + info.sym + ' ' + fmt(usd * rate, info.dec) + ' →';
+      if(!el.dataset.orig) el.dataset.orig = el.textContent;
+      el.textContent = el.dataset.orig.replace(RE_PRECIO, local(parseFloat(el.dataset.ctaUsd)));
     });
+
     /* Countdown */
     document.querySelectorAll('.cd-price').forEach(function(el){
-      el.textContent = 'de ' + info.sym + ' ' + fmt(9.90 * rate, info.dec);
+      el.textContent = 'de ' + local(9.90);
     });
-    /* Referencia en USD debajo */
+
+    /* Resto de precios de la página (bonos, stack, testimonios, FAQ, modal, sticky) */
+    document.querySelectorAll('[data-p]').forEach(function(el){
+      if(!el.dataset.orig) el.dataset.orig = el.textContent;
+      el.textContent = el.dataset.orig.replace(RE_PRECIO, local(parseFloat(el.dataset.p)));
+    });
+
+    /* Referencia en USD debajo del precio principal */
     document.querySelectorAll('.usd-ref').forEach(function(el){
       el.textContent = '≈ USD 9,90 · el cobro se realiza en dólares';
       el.classList.remove('hidden');
     });
-
   }
 
   function init(){
