@@ -546,8 +546,8 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   </div>
   <div class="price-row reveal">
     <span class="before price-before" data-usd="73">Antes $73</span>
-    <span class="now"><small>Accede ahora por</small><b class="price-main" data-usd="15">$15</b></span>
-    <span class="usd-ref hidden"></span>
+    <span class="now"><small>Accede ahora por</small><b class="price-main" data-usd="15">$15<span class="cur-code">USD</span></b></span>
+    <span class="usd-ref" data-approx="15">Precio en dólares (USD)</span>
   </div>
 
   <div style="margin-top:20px" class="reveal">
@@ -726,8 +726,8 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
       <div class="total"><span>Valor total del paquete</span><b data-p="73">$73</b></div>
       <div class="final">
         <small>Pero hoy puedes obtener todo por</small>
-        <b class="price-main" data-usd="15">$15</b>
-        <span class="usd-ref hidden"></span>
+        <b class="price-main" data-usd="15">$15<span class="cur-code">USD</span></b>
+        <span class="usd-ref" data-approx="15">Precio en dólares (USD)</span>
         <div style="margin-top:20px">
           <a class="cta cta-wide" href="https://pay.hotmart.com/R106729842D?checkoutMode=10">Desbloquear conocimiento →</a>
         </div>
@@ -971,8 +971,8 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     </div>
     <div class="price-row reveal">
       <span class="before price-before" data-usd="73">Antes $73</span>
-      <span class="now"><small>Hoy solo</small><b class="price-main" data-usd="15">$15</b></span>
-      <span class="usd-ref hidden"></span>
+      <span class="now"><small>Hoy solo</small><b class="price-main" data-usd="15">$15<span class="cur-code">USD</span></b></span>
+      <span class="usd-ref" data-approx="15">Precio en dólares (USD)</span>
     </div>
     <div class="countdown reveal" id="countdown2">
       <div class="cd-box"><b id="cd-h2">00</b><small>Horas</small></div>
@@ -1044,6 +1044,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     <h3>Espera — desbloqueaste un <span>precio especial de <span data-p="12">$12</span></span></h3>
     <p>Solo por no cerrar la página, te llevas el pack completo (valorado en <b data-p="73">$73</b>) + los 3 bonos por <b data-p="12">$12</b> en vez de <span style="text-decoration:line-through" data-p="15">$15</span>. Con <b>garantía de 7 días</b>. Esta rebaja no vuelve a aparecer.</p>
     <a class="cta" href="https://pay.hotmart.com/R106729842D?off=plhhfjl7&checkoutMode=10" data-cta-usd="12">Reclamar por $12 →</a>
+    <span class="usd-ref" data-approx="12" style="margin-top:8px;font-size:.78rem">Precio en dólares (USD)</span>
     <button class="nothanks" id="exitNo">No gracias, prefiero pagar <span data-p="15">$15</span> después</button>
   </div>
 </div>
@@ -1164,45 +1165,18 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   var RE_PRECIO = /\$\s?[\d.,]+/;
 
   function pintar(pais, tasas){
+    /* Los precios de la página SIEMPRE se muestran y cobran en USD.
+       Esta función solo agrega una referencia PEQUEÑA y aproximada en la
+       moneda del visitante, sin tocar ningún precio principal. */
     var info = PAISES[pais];
     if(!info || !tasas || !tasas.rates) return;
     var rate = tasas.rates[info.cur];
     if(!rate) return;
 
-    function local(usd){ return info.sym + ' ' + fmt(usd * rate, info.dec); }
-
-    /* Precio principal grande + código de moneda */
-    document.querySelectorAll('.price-main').forEach(function(el){
-      el.innerHTML = local(parseFloat(el.dataset.usd)) +
-                     '<span class="cur-code">' + info.cur + '</span>';
-    });
-
-    /* Precio tachado del hero / CTA final */
-    document.querySelectorAll('.price-before').forEach(function(el){
-      el.textContent = 'Antes ' + local(parseFloat(el.dataset.usd));
-    });
-
-    /* Botones CTA — conserva el texto, cambia el número */
-    document.querySelectorAll('[data-cta-usd]').forEach(function(el){
-      if(!el.dataset.orig) el.dataset.orig = el.textContent;
-      el.textContent = el.dataset.orig.replace(RE_PRECIO, local(parseFloat(el.dataset.ctaUsd)));
-    });
-
-    /* Countdown */
-    document.querySelectorAll('.cd-price').forEach(function(el){
-      el.textContent = 'de ' + local(15);
-    });
-
-    /* Resto de precios de la página (bonos, stack, testimonios, FAQ, modal, sticky) */
-    document.querySelectorAll('[data-p]').forEach(function(el){
-      if(!el.dataset.orig) el.dataset.orig = el.textContent;
-      el.textContent = el.dataset.orig.replace(RE_PRECIO, local(parseFloat(el.dataset.p)));
-    });
-
-    /* Referencia en USD debajo del precio principal */
-    document.querySelectorAll('.usd-ref').forEach(function(el){
-      el.textContent = '≈ USD 15 · el cobro se realiza en dólares';
-      el.classList.remove('hidden');
+    document.querySelectorAll('.usd-ref[data-approx]').forEach(function(el){
+      var usd = parseFloat(el.dataset.approx);
+      var aprox = info.sym + ' ' + fmt(usd * rate, info.dec) + ' ' + info.cur;
+      el.textContent = '≈ aprox. ' + aprox + ' · se cobra en USD';
     });
   }
 
