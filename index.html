@@ -327,6 +327,26 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
   .affiliate-sub{font-size:.6rem}
 }
 
+/* ---------- Banner promo deslizante ---------- */
+.promo-ticker{
+  position:relative;z-index:59;overflow:hidden;white-space:nowrap;
+  background:linear-gradient(90deg,#7a0e0e,var(--red),#7a0e0e);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  padding:8px 0;
+}
+.promo-ticker-track{
+  display:inline-block;
+  animation:promoScroll 16s linear infinite;
+  font-size:.82rem;font-weight:900;letter-spacing:.06em;color:#fff;
+  text-transform:uppercase;
+}
+.promo-ticker-track b{color:#ffe9a3}
+.promo-ticker-track .code{
+  background:#fff;color:#7a0e0e;border-radius:6px;padding:1px 8px;
+  letter-spacing:.1em;
+}
+@keyframes promoScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
 /* ---------- Scarcity bar ---------- */
 .scarcity{
   max-width:380px;margin:22px auto 0;text-align:center;
@@ -535,6 +555,14 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   <span class="topbar-sep">·</span>
   <span class="topbar-offer"><b>¡OFERTA SOLO HOY!</b><span class="hide-sm"> &nbsp;·&nbsp; Más de <b>42.300 lectores</b> ya accedieron</span></span>
 </div>
+
+<!-- PROMO TICKER -->
+<div class="promo-ticker">
+  <div class="promo-ticker-track">
+    <span>🔥 40% DE DESCUENTO con el código <span class="code">AGOSTO</span> &nbsp;·&nbsp; Aplica tu cupon en el checkout &nbsp;·&nbsp; Solo por tiempo limitado &nbsp;·&nbsp; 🔥 40% DE DESCUENTO con el código <span class="code">AGOSTO</span> &nbsp;·&nbsp; Aplica tu cupon en el checkout &nbsp;·&nbsp; Solo por tiempo limitado &nbsp;·&nbsp; </span>
+  </div>
+</div>
+
 
 <!-- HERO -->
 <section class="hero wrap">
