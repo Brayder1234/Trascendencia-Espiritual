@@ -106,7 +106,8 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
 .hero-social .hs-sep{width:1px;height:22px;background:var(--line)}
 .stars-sm{color:#f5c542;font-size:.92rem;letter-spacing:1px}
 /* Book */
-.book-stage{position:relative;display:inline-block;margin:0 auto 28px}
+.book-stage{position:relative;display:inline-block;margin:0 auto 28px;
+  perspective:1100px;animation:float 6s ease-in-out infinite}
 .book-glow{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);
   width:70%;height:70%;z-index:-1;border-radius:50%;
   background:radial-gradient(circle,rgba(224,30,30,.5),transparent 70%);
@@ -115,7 +116,9 @@ h1{font-size:clamp(2rem,5.5vw,3.8rem)}
   50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
 .hero-pack{width:min(540px,88vw);border:none;border-radius:0;box-shadow:none;
   filter:drop-shadow(0 30px 60px rgba(0,0,0,.7));
-  animation:float 6s ease-in-out infinite}
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transform-style:preserve-3d;transition:transform .25s ease-out;
+  will-change:transform}
 @keyframes float{0%,100%{transform:translateY(0) scale(1)}
   50%{transform:translateY(-12px) scale(1.01)}}
 /* CTA urgency badge */
@@ -570,7 +573,7 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
   <h1 class="reveal">Este conocimiento fue <span>suprimido durante siglos.</span><br>Ahora puedes descifrarlo tú mismo.</h1>
   <p class="sub reveal">La verdad oculta detrás de la Biblia, los chakras y las tradiciones antiguas — revelada por primera vez en un solo lugar.</p>
 
-  <div class="book-stage reveal">
+  <div class="book-stage">
     <div class="book-glow"></div>
     <img class="book hero-pack" src="https://static-media.hotmart.com/nxNr8rHmiZy2JxsnC3Ma43Q0T0g=/filters:quality(1):format(webp)/klickart-prod/uploads/media/file/10638657/imagen.2png.png" alt="El Conocimiento Prohibido + 3 bonos de regalo">
   </div>
@@ -1342,6 +1345,37 @@ footer .em{font-family:var(--serif);font-style:italic;color:var(--gold-soft)}
     current=Math.min(180,Math.max(60,current+delta));
     el.textContent=current;
   },9000);
+})();
+
+/* ---- Libro 3D: parallax con el mouse ---- */
+(function(){
+  var stage = document.querySelector('.book-stage');
+  var pack  = document.querySelector('.hero-pack');
+  if(!stage || !pack) return;
+  var MAX = 16; /* grados máximos de inclinación */
+
+  /* Solo en dispositivos con mouse fino (desktop) */
+  if(window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    stage.addEventListener('mousemove', function(e){
+      var r = stage.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width  - 0.5;  /* -0.5 a 0.5 */
+      var py = (e.clientY - r.top)  / r.height - 0.5;
+      pack.style.setProperty('--ry', (px * MAX * 2).toFixed(1) + 'deg');
+      pack.style.setProperty('--rx', (-py * MAX).toFixed(1) + 'deg');
+    });
+    stage.addEventListener('mouseleave', function(){
+      pack.style.setProperty('--ry', '0deg');
+      pack.style.setProperty('--rx', '0deg');
+    });
+  } else {
+    /* Móvil: leve balanceo automático para dar sensación 3D */
+    var t = 0;
+    setInterval(function(){
+      t += 0.03;
+      pack.style.setProperty('--ry', (Math.sin(t) * 7).toFixed(1) + 'deg');
+      pack.style.setProperty('--rx', (Math.cos(t*0.7) * 3).toFixed(1) + 'deg');
+    }, 40);
+  }
 })();
 
 /* ---- Staggered reveal ---- */
