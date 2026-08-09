@@ -38,6 +38,33 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+/* ---------- animaciones ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  .hero .inner>*{opacity:0;transform:translateY(20px);animation:heroUp .85s cubic-bezier(.22,1,.36,1) both}
+  .hero .inner>*:nth-child(1){animation-delay:.06s}
+  .hero .inner>*:nth-child(2){animation-delay:.16s}
+  .hero .inner>*:nth-child(3){animation-delay:.26s}
+  .hero .inner>*:nth-child(4){animation-delay:.36s}
+  .hero .inner>*:nth-child(5){animation-delay:.46s}
+  @keyframes heroUp{to{opacity:1;transform:none}}
+  .announce{animation:fadeDown .6s ease both}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:none}}
+}
+.card{transition:transform .38s cubic-bezier(.22,1,.36,1)}
+.card:hover{transform:translateY(-7px)}
+.cover{transition:box-shadow .38s ease}
+.card:hover .cover{box-shadow:0 20px 44px rgba(0,0,0,.14)}
+.btn,.add{transition:background .2s ease,color .2s ease,transform .12s ease,letter-spacing .25s ease}
+.btn:hover{letter-spacing:.11em}
+.btn:active,.add:active{transform:scale(.98)}
+.ptitle{transition:color .2s ease}
+.icons a,.icons button{transition:transform .2s ease,color .18s ease}
+.icons a:hover,.icons button:hover{transform:translateY(-2px)}
+.brand .logo{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.brand:hover .logo{transform:rotate(-8deg) scale(1.05)}
+
 /* announcement */
 .announce{background:var(--ink);color:#dcd8d0;text-align:center;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:10px 12px}
 
@@ -267,7 +294,7 @@ footer{background:var(--ink);color:#a6a29a;padding:56px 0 34px}
 </section>
 
 <div class="wrap" id="catalogo">
-  <div class="chead">
+  <div class="chead reveal">
     <div>
       <h2>Catálogo</h2>
     </div>
@@ -289,7 +316,7 @@ footer{background:var(--ink);color:#a6a29a;padding:56px 0 34px}
   <div class="empty" id="empty" hidden>No encontramos títulos con ese criterio.</div>
 </div>
 
-<section class="trust">
+<section class="trust reveal">
   <div class="wrap row">
     <div class="col"><i class="ti ti-download"></i><div class="t">Descarga inmediata</div><div class="s">Acceso al instante</div></div>
     <div class="col"><i class="ti ti-lock"></i><div class="t">Pago seguro</div><div class="s">Procesado por Hotmart</div></div>
@@ -299,7 +326,7 @@ footer{background:var(--ink);color:#a6a29a;padding:56px 0 34px}
 </section>
 
 <div class="wrap">
-  <section class="about" id="editorial">
+  <section class="about reveal" id="editorial">
     <div>
       <div class="eye">La editorial</div>
       <h2>Publicamos lo que otros prefieren no explicar</h2>
@@ -316,7 +343,7 @@ footer{background:var(--ink);color:#a6a29a;padding:56px 0 34px}
 </div>
 
 <div class="wrap">
-  <section class="faq" id="preguntas">
+  <section class="faq reveal" id="preguntas">
     <h2>Preguntas frecuentes</h2>
     <div class="qs">
       <div class="q"><button type="button">¿Cómo recibo el libro después de comprar?<i class="ti ti-plus"></i></button><div class="a"><p>El acceso es inmediato. Al completar el pago, Hotmart te envía un correo con el enlace de descarga y también puedes entrar desde tu cuenta de Hotmart. No hay envíos físicos ni esperas.</p></div></div>
@@ -329,7 +356,7 @@ footer{background:var(--ink);color:#a6a29a;padding:56px 0 34px}
   </section>
 </div>
 
-<section class="news">
+<section class="news reveal">
   <h3>Reciba un capítulo de cortesía</h3>
   <p>Escríbanos y le enviamos un fragmento de "El Conocimiento Prohibido" sin costo.</p>
   <form class="nform" id="newsForm">
@@ -563,6 +590,15 @@ const grid = document.getElementById("grid");
 const empty = document.getElementById("empty");
 const countEl = document.getElementById("count");
 
+/* ---- scroll reveal (secciones + tarjetas) ---- */
+const revealIO = ('IntersectionObserver' in window)
+  ? new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' })
+  : null;
+function observeReveal(el){ if (revealIO) revealIO.observe(el); else el.classList.add('in'); }
+document.querySelectorAll('.reveal').forEach(observeReveal);
+
 /* ---- filtros por categoría (UI removida; se muestran todos) ---- */
 const filtersEl = document.getElementById("filters");
 if (filtersEl) {
@@ -644,6 +680,11 @@ function render() {
   grid.innerHTML = lista.map(cardHTML).join("");
   if (countEl) countEl.textContent = lista.length;
   empty.hidden = lista.length > 0;
+  grid.querySelectorAll('.card').forEach((c, i) => {
+    c.classList.add('reveal');
+    c.style.transitionDelay = ((i % 4) * 0.07) + 's';
+    observeReveal(c);
+  });
 }
 render();
 
