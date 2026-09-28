@@ -1058,12 +1058,12 @@ html[data-tema="sobrio"] .rescue-pill{background:#121212}
     <h3 id="exitTitle">Te dejamos todo por <span class="r">$<span data-cfg="precioRescate">12</span></span></h3>
     <p>El libro + los <span data-cfg="numBonos">3</span> bonos, con la misma <b>garantía de <span data-cfg="garantiaDias">7</span> días</b>, en vez de $<span data-cfg="precio">15</span>. Este precio solo existe en esta ventana y se cierra en:</p>
     <div class="rescue-timer" data-rescue-t>10:00</div>
-    <a class="cta buy-rescue" href="#">Reclamar por $<span data-cfg="precioRescate">12</span> <span class="arrow">→</span></a>
+    <a class="cta buy-rescue" href="https://pay.hotmart.com/D107564400W?off=cg6bh4yt&checkoutMode=10">Reclamar por $<span data-cfg="precioRescate">12</span> <span class="arrow">→</span></a>
     <span class="usd-ref" data-approx="precioRescate">Precio en dólares (USD)</span>
     <button class="nothanks" type="button" data-close>No, gracias. Prefiero pagar $<span data-cfg="precio">15</span> después.</button>
   </div>
 </div>
-<a class="rescue-pill buy-rescue" id="rescuePill" href="#" hidden>🎁 Tu precio de $<span data-cfg="precioRescate">12</span> vence en <b data-rescue-t>10:00</b> →</a>
+<a class="rescue-pill buy-rescue" id="rescuePill" href="https://pay.hotmart.com/D107564400W?off=cg6bh4yt&checkoutMode=10" hidden>🎁 Tu precio de $<span data-cfg="precioRescate">12</span> vence en <b data-rescue-t>10:00</b> →</a>
 
 <!-- Visor de páginas -->
 <div class="lb" id="lb" hidden><button class="lb-x" type="button" aria-label="Cerrar">✕</button><div class="lb-in lockfx"><img id="lbImg" src="" alt="Página del libro"><span class="lock">🔒 El resto de la página está en el libro</span></div></div>
@@ -1085,9 +1085,8 @@ var CFG = {
   resenas: 327,          // número real de reseñas
   bonoGuia: true,        // false = oculta el bono "Guía para la Creación de la Realidad" en toda la página
   checkout: 'https://pay.hotmart.com/D107564400W?checkoutMode=10',
-  // Enlace de la oferta de $12 DEL PRODUCTO NUEVO (Hotmart > tu producto > Ofertas). Mientras esté vacío,
-  // la ventana de salida no aparece. El enlace viejo (R106729842D?off=plhhfjl7) ya da error en Hotmart.
-  checkoutRescate: ''
+  // Enlace de la oferta de $12 del producto nuevo. Si lo dejas vacío (''), la ventana de salida no aparece.
+  checkoutRescate: 'https://pay.hotmart.com/D107564400W?off=cg6bh4yt&checkoutMode=10'
 };
 
 (function(){
