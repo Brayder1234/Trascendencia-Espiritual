@@ -443,6 +443,22 @@ footer p{max-width:720px;margin:0 auto 8px}
 .x{position:absolute;top:8px;right:10px;background:none;border:0;font-size:1.2rem;color:var(--dim);cursor:pointer;padding:8px;line-height:1}
 .nothanks{display:block;width:100%;margin-top:12px;background:none;border:0;color:var(--dim2);font-size:.8rem;text-decoration:underline;cursor:pointer}
 @keyframes pop{from{transform:scale(.86);opacity:0}to{transform:scale(1);opacity:1}}
+.modal{overflow-y:auto}
+.modal-card{margin:auto}
+.ex-kicker{color:#ff4a4e!important}
+.ex-price{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:2px 0 8px}
+.ex-price s{color:var(--dim2);font-size:1.3rem;text-decoration-color:#e3161b}
+.ex-price b{font-family:var(--display);font-weight:400;font-size:3.2rem;line-height:1;color:#fff}
+.ex-price em{font-style:normal;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#e3161b;border-radius:6px;padding:4px 8px;align-self:center}
+.ex-list{list-style:none;text-align:left;max-width:320px;margin:12px auto 10px;font-size:.88rem;color:var(--ink)}
+.ex-list li{padding:4px 0}
+.ex-t{margin-top:4px}
+.ex-t .rescue-timer{display:inline;font-size:1.5rem;margin:0 0 0 4px;vertical-align:-2px}
+.ex-cta{animation:exPulse 1.6s ease-in-out infinite}
+@keyframes exPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.rescue-pill{animation:exPulse 1.8s ease-in-out infinite}
+@media(max-width:520px){.modal{align-items:flex-end;padding:0}.modal-card{margin:auto 0 0;border-radius:22px 22px 0 0;padding:26px 18px calc(18px + env(safe-area-inset-bottom));animation:sheetUp .35s cubic-bezier(.2,1,.3,1)}.modal-card img{width:140px}.modal-card h3{font-size:1.5rem}}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
 .rescue-pill{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);z-index:85;background:#150b0d;border:1px solid var(--red);color:var(--ink);
   border-radius:99px;padding:9px 16px;font-size:.8rem;font-weight:700;box-shadow:var(--shadow);white-space:nowrap}
 .rescue-pill b{color:var(--red2);font-variant-numeric:tabular-nums}
@@ -475,7 +491,8 @@ html[data-tema="sobrio"] .col h3,html[data-tema="sobrio"] .path h3,html[data-tem
 html[data-tema="sobrio"] .pp .lock b,html[data-tema="sobrio"] .chip b,html[data-tema="sobrio"] .av,
 html[data-tema="sobrio"] .price,html[data-tema="sobrio"] .today .big,html[data-tema="sobrio"] .sticky .si b{font-family:var(--serif);font-weight:700;text-transform:none;letter-spacing:0}
 html[data-tema="sobrio"] .col h3,html[data-tema="sobrio"] .path h3{font-size:1.28rem}
-html[data-tema="sobrio"] .modal-card h3{font-size:1.6rem}
+html[data-tema="sobrio"] .modal-card h3{font-size:1.5rem}
+html[data-tema="sobrio"] .ex-price b{font-family:var(--serif);font-weight:700}
 html[data-tema="sobrio"] .price{font-size:3.1rem}
 html[data-tema="sobrio"] .marquee{background:rgba(255,255,255,.025)}
 html[data-tema="sobrio"] .marquee-track{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;font-size:1.02rem}
@@ -1053,14 +1070,21 @@ html[data-tema="sobrio"] .rescue-pill{background:#121212}
 <div class="modal" id="exit" role="dialog" aria-modal="true" aria-labelledby="exitTitle" hidden>
   <div class="modal-card">
     <button class="x" type="button" data-close aria-label="Cerrar">✕</button>
-    <span class="kicker">Antes de que te vayas</span>
+    <span class="kicker ex-kicker">⚠ Espera · oferta única</span>
     <img src="assets/v2-pack.webp" width="900" height="605" alt="" loading="lazy">
-    <h3 id="exitTitle">Te dejamos todo por <span class="r">$<span data-cfg="precioRescate">12</span></span></h3>
-    <p>El libro + los <span data-cfg="numBonos">3</span> bonos, con la misma <b>garantía de <span data-cfg="garantiaDias">7</span> días</b>, en vez de $<span data-cfg="precio">15</span>. Este precio solo existe en esta ventana y se cierra en:</p>
-    <div class="rescue-timer" data-rescue-t>10:00</div>
-    <a class="cta buy-rescue" href="https://pay.hotmart.com/D107564400W?off=cg6bh4yt&checkoutMode=10">Reclamar por $<span data-cfg="precioRescate">12</span> <span class="arrow">→</span></a>
+    <h3 id="exitTitle">¡No te vayas con las manos vacías!</h3>
+    <div class="ex-price"><s>$<span data-cfg="precio">15</span></s><b>$<span data-cfg="precioRescate">12</span></b><em>Ahorras $<span data-cfg="ahorroRescate">3</span></em></div>
+    <p>Solo por quedarte, te dejamos <b>todo el paquete por $<span data-cfg="precioRescate">12</span></b>. Es el precio más bajo que vas a ver en esta página.</p>
+    <ul class="ex-list">
+      <li>✓ El Conocimiento Prohibido (21 capítulos ilustrados)</li>
+      <li>✓ <span data-cfg="numBonos">3</span> libros de regalo</li>
+      <li>✓ Acceso inmediato en tu correo</li>
+      <li>✓ Garantía de <span data-cfg="garantiaDias">7</span> días o te devuelven tu dinero</li>
+    </ul>
+    <p class="ex-t">Esta oferta desaparece en <b class="rescue-timer" data-rescue-t>10:00</b></p>
+    <a class="cta buy-rescue ex-cta" href="https://pay.hotmart.com/D107564400W?off=cg6bh4yt&checkoutMode=10">Sí, lo quiero por $<span data-cfg="precioRescate">12</span> <span class="arrow">→</span></a>
     <span class="usd-ref" data-approx="precioRescate">Precio en dólares (USD)</span>
-    <button class="nothanks" type="button" data-close>No, gracias. Prefiero pagar $<span data-cfg="precio">15</span> después.</button>
+    <button class="nothanks" type="button" data-close>No, prefiero pagar $<span data-cfg="precio">15</span> después</button>
   </div>
 </div>
 <a class="rescue-pill buy-rescue" id="rescuePill" href="https://pay.hotmart.com/D107564400W?off=cg6bh4yt&checkoutMode=10" hidden>🎁 Tu precio de $<span data-cfg="precioRescate">12</span> vence en <b data-rescue-t>10:00</b> →</a>
@@ -1100,6 +1124,7 @@ var CFG = {
   /* ---------- Bonos + valores calculados ---------- */
   if(!CFG.bonoGuia) $$('[data-bono="guia"]').forEach(function(el){ el.remove(); });
   CFG.numBonos = CFG.bonoGuia ? 3 : 2;
+  CFG.ahorroRescate = CFG.precio - CFG.precioRescate;
   CFG.valorTotal = $$('.stack .row[data-val]').reduce(function(t,r){ return t + (parseFloat(r.dataset.val)||0); },0);
   var end = CFG.finLanzamiento ? new Date(CFG.finLanzamiento).getTime() : 0;
   if(end){
@@ -1280,8 +1305,8 @@ var CFG = {
       $$('[data-rescue-t]').forEach(function(el){ el.textContent = txt; });
     }
     function startTimer(){ tick(); if(!timer) timer = setInterval(tick,1000); }
-    function open(){
-      if(shownThisSession || clickedBuy || rExpired() || Date.now() - loadedAt < 8000) return;
+    function open(minMs){
+      if(shownThisSession || clickedBuy || rExpired() || !modal.hidden || Date.now() - loadedAt < (minMs===undefined ? 8000 : minMs)) return false;
       shownThisSession = true;
       try{ sessionStorage.setItem('cp_exit','1'); }catch(e){}
       if(!rEnd()) store(KEY, String(Date.now() + CFG.rescateMinutos*60000));
@@ -1289,6 +1314,7 @@ var CFG = {
       modal.hidden = false;
       startTimer();
       track('OfertaSalidaVista',{},true);
+      return true;
     }
     function close(){
       modal.hidden = true;
@@ -1301,13 +1327,50 @@ var CFG = {
     if(rActive()){ pill.hidden = false; startTimer(); }
     /* Escritorio: el mouse sale por arriba */
     document.addEventListener('mouseout',function(e){ if(!e.relatedTarget && e.clientY <= 8) open(); });
-    /* Móvil: sube rápido hacia arriba después de haber leído buena parte */
-    var maxY = 0, lastY = 0;
-    addEventListener('scroll',function(){
-      var y = scrollY; maxY = Math.max(maxY,y);
-      if(maxY > document.body.scrollHeight*.35 && lastY - y > 120 && y < 600) open();
-      lastY = y;
-    },{passive:true});
+    /* ---- Móvil / celular ---- */
+    var touch = matchMedia('(hover:none)').matches || 'ontouchstart' in window;
+    /* 1) Botón "atrás" (Android, navegador de Facebook/Instagram): el primer "atrás" muestra la oferta;
+          el segundo sale normal. Solo se agrega UNA entrada al historial y nunca se bloquea la salida. */
+    var armed = false;
+    function arm(){
+      if(armed || shownThisSession || rExpired()) return;
+      armed = true;
+      try{ history.pushState({cpExit:1}, '', location.href); }catch(e){}
+    }
+    addEventListener('pointerdown', arm, {once:true, passive:true});
+    addEventListener('touchend', arm, {once:true, passive:true});
+    addEventListener('popstate', function(){
+      if(!armed) return;
+      armed = false;
+      if(!open(2000)) history.back();   /* si no aplica, deja salir sin estorbar */
+    });
+    /* 2) Vuelve a la página después de cambiar de app o pestaña */
+    var hiddenAt = 0;
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){ hiddenAt = Date.now(); return; }
+      if(hiddenAt && Date.now() - hiddenAt > 3000) open(5000);
+    });
+    /* 3) Sube rápido hacia arriba (gesto típico de "ya me voy") */
+    var maxY = 0, lastY = scrollY, lastT = Date.now();
+    addEventListener('scroll', function(){
+      var y = scrollY, t = Date.now(), dy = lastY - y, dt = Math.max(1, t - lastT);
+      maxY = Math.max(maxY, y);
+      var h = document.documentElement.scrollHeight;
+      if(maxY > h * .25 && dy > 0 && (dy / dt > 1.5 || dy > 260)) open();
+      lastY = y; lastT = t;
+    }, {passive:true});
+    /* 4) En celular: se queda quieto 25 s después de haber visto el precio */
+    if(touch){
+      var idle = null, sawPrice = false;
+      function resetIdle(){
+        clearTimeout(idle);
+        if(sawPrice) idle = setTimeout(function(){ open(); }, 25000);
+      }
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(e){ if(e[0].isIntersecting && !sawPrice){ sawPrice = true; resetIdle(); } }).observe($('#oferta'));
+      }
+      ['scroll','touchstart'].forEach(function(ev){ addEventListener(ev, resetIdle, {passive:true}); });
+    }
   })();
 
   /* ---------- Precio aproximado en moneda local (se cobra en USD) ---------- */
