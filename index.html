@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<script>if(location.protocol==="http:"&&location.hostname.indexOf("localhost")===-1&&!/^127\./.test(location.hostname)){location.replace("https://"+location.host+location.pathname+location.search+location.hash);}document.documentElement.className+=' js';window.__tema='sobrio';try{if(new URLSearchParams(location.search).get('tema')==='rojo')window.__tema='rojo';}catch(e){}if(window.__tema==='sobrio')document.documentElement.setAttribute('data-tema','sobrio');</script>
+<script>if(location.protocol==="http:"&&location.hostname.indexOf("localhost")===-1&&!/^127\./.test(location.hostname)){location.replace("https://"+location.host+location.pathname+location.search+location.hash);}document.documentElement.className+=' js';document.documentElement.setAttribute('data-tema','sobrio');</script>
 <!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -469,7 +469,7 @@ footer p{max-width:720px;margin:0 auto 8px}
 .rescue-pill b{color:var(--red2);font-variant-numeric:tabular-nums}
 
 /* =========================================================
-   TEMA SOBRIO (por defecto; la versión roja se ve con ?tema=rojo): negro + blanco, rojo solo en botones
+   TEMA OSCURO (el único que se usa; la versión roja se eliminó): negro + blanco, rojo solo en botones
    y en la frase clave del titular
    ========================================================= */
 html[data-tema="sobrio"]{
@@ -1168,7 +1168,7 @@ var CFG = {
       ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src'].forEach(function(k){
         var v = qs.get(k); if(v && !u.searchParams.has(k)) u.searchParams.set(k,v);
       });
-      u.searchParams.set('sck', qs.get('sck') || ('oferta' + (window.__angulo ? '_' + window.__angulo : '') + (window.__tema ? '_' + window.__tema : '')));
+      u.searchParams.set('sck', qs.get('sck') || ('oferta' + (window.__angulo ? '_' + window.__angulo : '')));
       return u.toString();
     }catch(e){ return base; }
   }
@@ -1176,7 +1176,7 @@ var CFG = {
   if(CFG.checkoutRescate) $$('a.buy-rescue').forEach(function(a){ a.href = withTracking(CFG.checkoutRescate); });
 
   /* ---------- Píxel de Meta ---------- */
-  track('ViewContent',{content_name:'El Conocimiento Prohibido',content_type:'product',value:CFG.precio,currency:'USD',tema:window.__tema||'rojo'});
+  track('ViewContent',{content_name:'El Conocimiento Prohibido',content_type:'product',value:CFG.precio,currency:'USD'});
   var clickedBuy = false;
   document.addEventListener('click',function(e){
     var a = e.target.closest && e.target.closest('a.buy, a.buy-rescue');
@@ -1451,7 +1451,7 @@ var CFG = {
     function idEn(tipo, k){ try{ var st = window[tipo], v = st.getItem(k); if(!v){ v = rid(); st.setItem(k, v); } return v; }catch(e){ return rid(); } }
     var vid = idEn('localStorage', 'cp_vid'), sid = idEn('sessionStorage', 'cp_sid');
     var dev = (matchMedia('(hover:none)').matches || innerWidth < 760) ? 'm' : 'd';
-    var q = {}; ['utm_source','utm_campaign','sck','a','tema'].forEach(function(k){ var v = qs.get(k); if(v) q[k] = v.slice(0, 80); });
+    var q = {}; ['utm_source','utm_campaign','sck','a'].forEach(function(k){ var v = qs.get(k); if(v) q[k] = v.slice(0, 80); });
     var cc = null;
     function send(ruta, obj){
       obj.v = vid; obj.s = sid; obj.d = dev; obj.c = cc; obj.q = q;
